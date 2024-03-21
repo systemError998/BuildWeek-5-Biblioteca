@@ -27,6 +27,7 @@ class BookFactory extends Factory
            'available_copies'=>$copieDisponibili,
            'author_id'=>Author::get()->random()->id,
            'category_id'=>Category::get()->random()->id,
+           
 
         ];
     }
