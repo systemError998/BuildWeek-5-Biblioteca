@@ -1,7 +1,9 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,7 +15,18 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->foreign('user_id')->on('users')->references('id')
+            ->onDelete('cascade')->onUpdate('cascade'); 
+            $table->foreignId('book_id');
+            $table->foreign('book_id')->on('books')->references('id')
+            ->onDelete('cascade')->onUpdate('cascade');   
+            $table-> boolean("is_active")->default(true) ;  
+            $table-> boolean("extended")->default(false);    
+            $table->date('expiring_date')->default(Carbon::now()->addDays(30));
+            $table->date('starting_date')->default(Carbon::now());
             $table->timestamps();
+            /* $table->unique(['user_id', 'book_id']); */
         });
     }
 

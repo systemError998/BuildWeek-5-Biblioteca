@@ -17,7 +17,9 @@ class AuthorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'full_name'=>fake()->name(),
+            'country'=>fake()->country(),
+            'year'=>fake()->year($max = '1980'),
         ];
     }
 }
