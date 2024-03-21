@@ -17,6 +17,8 @@ return new class extends Migration
             $table->year('year');
             $table->integer("total_copies");
             $table->integer("available_copies");
+            $table->string("cover_url")
+            ->default("https://i.pinimg.com/736x/b5/d7/ed/b5d7edaf6d61091281f348fb1e66efc8.jpg");
             $table->foreignId('author_id');
             $table->foreign('author_id')->on('authors')->references('id')
             ->onDelete('cascade')->onUpdate('cascade'); 
