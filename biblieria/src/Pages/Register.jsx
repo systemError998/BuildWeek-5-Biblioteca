@@ -9,7 +9,7 @@ export default function Register() {
                             Register
                         </h2>
                     <form className='w-75 position-relative top-0 start-50 translate-middle-x' >
-                    <div class="mb-3">
+                    <div className="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Name</label>
                             <input type="text" className="form-control" name='name' id="exampleInputEmail1" aria-describedby="emailHelp"/>
                         </div>
