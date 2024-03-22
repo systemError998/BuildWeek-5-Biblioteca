@@ -7,6 +7,7 @@ import NotFoundPage from './Pages/NotFoundPage';
 import ProfilePage from './Pages/ProfilePage';
 import Login from './Pages/Login';
 import MyNavbar from './Components/MyNavbar';
+import Register from './Pages/Register';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<HomePage />} />  
         <Route path="*" element={< NotFoundPage />} />
         <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
       </Routes>
     </BrowserRouter>
   );
