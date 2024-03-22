@@ -13,7 +13,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        return Author::with("books")->with("categories")->get();
     }
 
     /**
@@ -37,7 +37,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        return $author->load("categories")->load("books");
     }
 
     /**
