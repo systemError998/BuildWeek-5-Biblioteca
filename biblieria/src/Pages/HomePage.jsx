@@ -7,11 +7,15 @@ export default function HomePage() {
     e.preventDefault();
   
     await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error));
+
     await axios.post("/login", {
       email: "test@example.com",
       password: "password"
     }).then(response=>console.log(response)).catch(error=>console.log(error));
-    // await axios.get("http://localhost:8000/user");
+
+    await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error));
+
+    await axios.get("/api/user").catch(error=>console.log(error));;
   }
 
   
