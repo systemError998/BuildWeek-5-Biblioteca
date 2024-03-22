@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from "../api/axios";
 import { Container, Col, Row } from "react-bootstrap";
 import CategoriesList from '../Components/HomepageComp/CategoriesList'
@@ -8,6 +8,8 @@ import Pagination from '../Components/Pagination'
 import MyFavorites from '../Components/MyFavorites'
 import ActiveBookings from '../Components/ActiveBookings'
 import Footer from '../Components/Footer'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAuthors } from '../slice/authorSlice';
 export default function HomePage() {
 
   async function handleSubmit(e) {
@@ -24,7 +26,18 @@ export default function HomePage() {
 
  axios.get("/api/author?&page=2").then(response=>console.log(response)).catch(error=>console.log(error));
   }
+  const dispatch = useDispatch()
+  const authors= useSelector(state=>state.authors.listaAuthors)
+  const loading= useSelector(state=>state.authors.loading)
+  const erros= useSelector(state=>state.authors.error)
 
+  useEffect(()=>{
+    dispatch(fetchAuthors())
+  },[])
+
+  useEffect(()=>{
+    console.log(authors)
+  },[authors])
   
   return (
     <>
