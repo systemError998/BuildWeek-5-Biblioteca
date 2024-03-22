@@ -15,6 +15,6 @@ class Category extends Model
     }
 
     public function authors () : BelongsToMany  {
-        return $this->belongsToMany(Author::class, 'books'); //rivedere
+        return $this->belongsToMany(Author::class, 'books')->distinct(); 
     }
 }

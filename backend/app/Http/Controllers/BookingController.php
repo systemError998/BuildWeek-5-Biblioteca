@@ -13,7 +13,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+       return Booking::with("book")->with("user")->get();
     }
 
     /**
@@ -37,7 +37,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+       return $booking->load("user")->load("book");
     }
 
     /**
