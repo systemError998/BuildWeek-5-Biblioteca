@@ -5,7 +5,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './Pages/HomePage';
 import NotFoundPage from './Pages/NotFoundPage';
 import ProfilePage from './Pages/ProfilePage';
+import Login from './Pages/Login';
 import MyNavbar from './Components/MyNavbar';
+
 
 
 function App() {
@@ -16,7 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />  
         <Route path="*" element={< NotFoundPage />} />
-      
+        <Route path='/login' element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   );
