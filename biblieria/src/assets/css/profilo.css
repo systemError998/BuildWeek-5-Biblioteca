@@ -1,0 +1,17 @@
+.copertina{
+    width: 15em;
+    height: 20em;
+    z-index: 10;
+    
+}
+
+.w{
+    width: 15em;
+    cursor: pointer;
+}
+
+.copertina:hover{
+    z-index: 0;
+    filter: brightness(40%);
+}
+
