@@ -9,7 +9,7 @@ const initialState = {
 
 export const getCategorie = createAsyncThunk("GetCategorie/fetch", async () => {
     return axios("/api/category")
-            .then(response => response.data);
+            .then(response =>response.data);
 })
 
 const categorie_slice = createSlice(
@@ -27,7 +27,7 @@ const categorie_slice = createSlice(
                 })
                 .addCase(getCategorie.fulfilled, (state, action) => {
                     state.loading = false;
-                    state.categorie = action.payload;                                     
+                    state.listaCategorie = action.payload;                                     
                 })
         }
     }

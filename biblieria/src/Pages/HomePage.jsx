@@ -10,6 +10,7 @@ import ActiveBookings from '../Components/ActiveBookings'
 import Footer from '../Components/Footer'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthors } from '../slice/authorSlice';
+import { getCategorie } from '../slice/categorySlice';
 export default function HomePage() {
 
   async function handleSubmit(e) {
@@ -30,7 +31,7 @@ export default function HomePage() {
   const authors= useSelector(state=>state.authors.listaAuthors)
   const loading= useSelector(state=>state.authors.loading)
   const erros= useSelector(state=>state.authors.error)
-
+  const category= useSelector(state=>state.categorie.listaCategorie)
   useEffect(()=>{
     dispatch(fetchAuthors())
   },[])
@@ -38,6 +39,14 @@ export default function HomePage() {
   useEffect(()=>{
     console.log(authors)
   },[authors])
+
+  useEffect(()=>{
+    dispatch(getCategorie())
+  },[])
+  
+  useEffect(()=>{
+    console.log(category)
+  },[category])
   
   return (
     <>
