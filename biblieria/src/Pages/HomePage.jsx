@@ -13,16 +13,16 @@ export default function HomePage() {
   async function handleSubmit(e) {
     e.preventDefault();
   
-    await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error));
+    /* await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error));
 
     await axios.post("/login", {
       email: "test@example.com",
       password: "password"
     }).then(response=>console.log(response)).catch(error=>console.log(error));
 
-    await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error));
+    await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error)); */
 
-    await axios.get("/api/user").catch(error=>console.log(error));
+ axios.get("/api/author?&page=2").then(response=>console.log(response)).catch(error=>console.log(error));
   }
 
   
