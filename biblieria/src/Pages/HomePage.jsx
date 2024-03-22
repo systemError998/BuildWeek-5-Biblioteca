@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "../api/axios";
 
+
 export default function HomePage() {
 
   async function handleSubmit(e) {
@@ -15,7 +16,7 @@ export default function HomePage() {
 
     await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error));
 
-    await axios.get("/api/user").catch(error=>console.log(error));;
+    await axios.get("/api/book").then(response=>console.log(response)).catch(error=>console.log(error));;
   }
 
   
