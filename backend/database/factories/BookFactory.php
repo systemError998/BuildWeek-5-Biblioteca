@@ -28,7 +28,6 @@ class BookFactory extends Factory
            'author_id'=>Author::get()->random()->id,
            'category_id'=>Category::get()->random()->id,
            "abstract"=>fake()->text(200),
-
         ];
     }
 }
