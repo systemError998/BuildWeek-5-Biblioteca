@@ -4,6 +4,7 @@ import "../assets/css/Categories.css"
 import "../assets/css/profilo.css"
 import { useNavigate } from 'react-router-dom'
 import "../assets/css/Categories.css"
+import LittleSideBook from './HomepageComp/LittleSideBook'
 
 
 export default function MyFavorites() {
@@ -28,10 +29,7 @@ export default function MyFavorites() {
             <div>
                 {array.map((p, index) => (
                     <div key={index}>
-                        <button className="btn btn-blue my-2.5 w-44 preferito">
-                            <img src="https://www.ibs.it/images/9788832970944_0_536_0_75.jpg" alt="metamask" className="w-15 h-20" />
-                            <Link className='font-sans font-bold text-slate-900 no-underline text-sm cursor-default'>PREFERITI</Link>
-                        </button>
+                        <LittleSideBook />
                     </div>
                 ))}
             </div>
