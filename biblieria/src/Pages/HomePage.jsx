@@ -32,6 +32,7 @@ export default function HomePage() {
   const loading= useSelector(state=>state.authors.loading)
   const erros= useSelector(state=>state.authors.error)
   const category= useSelector(state=>state.categorie.listaCategorie)
+  
   useEffect(()=>{
     dispatch(fetchAuthors())
   },[])
