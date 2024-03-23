@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategorie } from '../../slice/categorySlice';
 import "../../assets/css/Categories.css"
+import "../../assets/script/Anna.js"
 
 export default function CategoriesList() {
 
@@ -30,22 +31,25 @@ export default function CategoriesList() {
     },[category])
 
 return (
-    <div className='container bg-slate-900 rounded-md py-2.5'>
-    <div className="row mx-1 justify-center mb-2">
-                    <button className="btn btn-blue my-2.5 w-44 labelPreferiti">
-                    <img src="https://freesvg.org/img/Buecher-coloured.png" alt="metamask" class="w-6 h-6" />                
-                    <Link className='font-sans font-bold text-slate-900 no-underline text-sm cursor-default'>CATEGORIE</Link>
+    <>
+        <div className="navigation h-100">
+            <p className='uppercase font-sans font-semibold border-b-2 pb-2'> Categorie </p>
+            <ul className="uppercase font-sans font-semibold text-center">
+                { category.map((categoria, index) => (
+                <li className="list text-center" key={index}>
+                    <button className="flex gap-1 no-underline uppercase" href="#">
+                        <span className="iconcina w-7 sm:mx-2 mx-4 inline"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                            </svg>
+                        </span>
+                        <span  className="testoSide"> {categoria.name}</span>
                     </button>
-                </div>
-        {category.map((categoria)=>(
-            <div className='row mx-1 justify-center' key={categoria.id}>
-            <button class="btn btn-blue my-2.5">
-        
-            <Link className='font-sans font-bold text-white no-underline '>{categoria.name}</Link>
-            </button>
-            </div>
-        ))}
-    </div>
+                </li>
+                ))}
+            </ul>
+        </div>
+    </>
 )
 }
 

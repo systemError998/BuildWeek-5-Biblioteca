@@ -1,30 +1,28 @@
-import React from 'react'
+import { Carousel } from "@material-tailwind/react";
+ 
 
+/* Mettere immagini 2000x800 sennò se vedono na merda me raccomando */
 export default function FakeCarousel() {
   return (
-    /* inserire il fuck carousel */
-    <div className='d-block'>
-    <div id="carouselExampleAutoplaying" className="carousel slide mb-5" data-bs-ride="carousel">
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src="https://c4.wallpaperflare.com/wallpaper/728/680/985/biblioteca-disea-estanterias-interior-wallpaper-preview.jpg" className="caroselloFack" alt="..." />
-    </div>
-    <div className="carousel-item">
-      <img src="https://c4.wallpaperflare.com/wallpaper/728/680/985/biblioteca-disea-estanterias-interior-wallpaper-preview.jpg" className="caroselloFack" alt="..." />
-    </div>
-    <div className="carousel-item">
-      <img src="https://c4.wallpaperflare.com/wallpaper/728/680/985/biblioteca-disea-estanterias-interior-wallpaper-preview.jpg" className="caroselloFack" alt="..."/>
-    </div>
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
-    </div>
-  )
+    <Carousel className="rounded-sm h-96 "> 
+      <img
+        src="https://www.missiondiscovery.org/wp-content/uploads/2023/12/website-featured-image-9.28-49.png"
+        alt="image 1"
+        className="h-full w-full object-cover"
+      />
+      <img
+        src="https://wefoundadventure.com/wp-content/uploads/2016/07/P7270396-2000x800.jpg"
+        alt="image 2"
+        className="h-full w-full object-cover"
+      />
+      <img
+        src="https://assets-au-scc.kc-usercontent.com/330b87ea-148b-3ecf-9857-698f2086fe8d/ea08766e-a930-44c5-8cfc-2a12e5da5514/services_print_2000.jpg?w=2000&fm=webp"
+        alt="image 3"
+        className="h-full w-full object-cover"
+      />
+    </Carousel>
+  );
 }
+
+
+

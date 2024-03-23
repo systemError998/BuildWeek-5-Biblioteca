@@ -12,6 +12,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthors } from '../slice/authorSlice';
 import { getCategorie } from '../slice/categorySlice';
 import FakeCarousel from '../Components/FakeCarousel';
+import "../assets/css/babyStyle.css"
+
+
 export default function HomePage() {
 
   async function handleSubmit(e) {
@@ -54,7 +57,7 @@ export default function HomePage() {
   return (
     <>
       <FakeCarousel />
-      <Container>
+      
       {/* {posts.length > 0 ?  */}
       <Row>
         <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
@@ -79,8 +82,6 @@ export default function HomePage() {
       {/* : <LoadingHomeComponent />}  */}
 
       <Footer />
-
-      </Container>
     </>
    
   )
