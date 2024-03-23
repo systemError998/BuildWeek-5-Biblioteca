@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBookings } from '../slice/bookingSlice';
 
 export default function ActiveBookings() {
   const array = [
@@ -11,6 +13,19 @@ export default function ActiveBookings() {
     'prenotazione',
     'prenotazione'
 ]
+
+    const dispatch = useDispatch()
+
+    const bookings= useSelector(state=>state.bookings.listaBooking)
+
+    useEffect(()=>{
+        dispatch(getBookings())
+    },[])
+    
+    useEffect(()=>{
+        console.log(bookings)
+    },[bookings])
+
 return (
 <div className='container bg-dark rounded-2 py-3'>
     <div className="bg-body-secondary mb-3 py-1 mx-2 text-center">PRENOTAZIONI ATTIVE</div>
