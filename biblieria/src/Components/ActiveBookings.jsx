@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from '../slice/bookingSlice';
+import { Link } from 'react-router-dom'
+import LittleSideBook from './HomepageComp/LittleSideBook'
 
 export default function ActiveBookings() {
   const array = [
@@ -27,28 +29,35 @@ export default function ActiveBookings() {
     },[bookings])
 
 return (
-<div className='container bg-dark rounded-2 py-3'>
-    <div className="bg-body-secondary mb-3 py-1 mx-2 text-center">PRENOTAZIONI ATTIVE</div>
-    {array.map((p)=>(
-        <div className="row p-1 mx-4 mb-3 text-light d-flex justify-content-between align-items-center">
-            <div className="col-2">
-                <div className='border-1 border-light text-center rounded-1'>
-                    IMG
-                </div>
+<div className='container bg-transparent border- rounded-md py-2.5 mx-auto justify-center'>
+<div className="row mx-1 justify-center">
+                <button className="btn btn-blue my-2.5 w-44 labelPreferiti">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Gold_Star.svg/768px-Gold_Star.svg.png" alt="metamask" className="w-6 h-6" />
+                <Link className='font-sans font-bold text-slate-900 no-underline text-sm cursor-default'>BOOKINGS</Link>
+                </button>
             </div>
-            <div className="col">
-                <p className='m-0 fs-5'>titolo libro</p>
-                <span className='text-secondary'>autore libro</span>
+
+            <div>
+                {array.map((p, index) => (
+                    <div key={index}>
+                        <div key={index}>
+                        <LittleSideBook />
+                        <div className="row mx-1 justify-center">
+                <button className="btn btn-blue my-2.5 w-44 labelPreferiti">
+                <Link className='font-sans font-bold text-slate-900 no-underline text-sm cursor-default'>ESTENDI PRENOTAZIONE</Link>
+                </button>
             </div>
-            <div className="col-5 text-secondary">
-                <span><i>Scadenza prenotazione: 2024/06/30</i></span>
+                    </div>
+                    </div>
+                ))}
             </div>
-            <div className="col">
-                <button className='btn btn-light btn-sm'>ESTENDI PRENOTAZIONE</button>
+
+            <div className="row mx-1 justify-center">
+                <button className="btn btn-blue my-2.5 w-44">
+                <Link className='font-sans font-bold text-slate-900 no-underline text-sm cursor-pointer mx-auto'>VEDI ALTRI</Link>
+                </button>
             </div>
         </div>
-    ))}
-</div>
 )
 }
 
