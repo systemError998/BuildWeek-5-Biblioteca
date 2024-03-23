@@ -34,7 +34,7 @@ export default function HomePage() {
 
     await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error)); */
 
-    dispatch(getAllBooks());
+    dispatch(getAllBooks({category:"Molestias", page:"2"}));
   }
   
 

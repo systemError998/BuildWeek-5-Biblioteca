@@ -33,9 +33,7 @@ export const AuthorPage = () => {
         </Col>
       </Row> 
       {/* : <LoadingHomeComponent />}  */}
-
       <Footer />
-
       </Container>
     </>
   )

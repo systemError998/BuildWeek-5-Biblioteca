@@ -13,7 +13,7 @@ const initialState = {
 };
 export const getAllBooks = createAsyncThunk("getAllBooks/fetch", async (args = {}, { dispatch }) => {
     let { page, category, author, title, abstract, year } = args;
-    return axios("/api/book?&" + (category ? (`&categories=` + category) : "") +
+    return axios("/api/book?&" + (category ? (`&category=` + category) : "") +
         (page ? ("&page=" + page) : "") + (title ? ("&title=" + title) : ""))
         .then(response => {
             console.log(response.data);
@@ -40,8 +40,7 @@ const chiamataBooks_slice = createSlice(
                     state.error = "";
                 })
                 .addCase(getAllBooks.rejected, (state, action) => {
-                    state.loading = false
-
+                    state.loading = false;
                     state.error = "Errore nel caricamento dei dati!!!"
                 })
                 .addCase(getAllBooks.fulfilled, (state, action) => {
@@ -50,7 +49,7 @@ const chiamataBooks_slice = createSlice(
                     state.listaLibri = action.payload.data;
                     state.pagineTotali = action.payload.last_page;
                     state.paginaCorrente = action.payload.current_page;
-                    state.risultatiTotali = action.payload.total
+                    state.risultatiTotali = action.payload.total;
                     state.error = "";
                 })
         }

@@ -11,7 +11,6 @@ export const store = configureStore({
         categorie: categoriReducer,
         bookings: bookingsReducer,
         libri: bookReducer,
-
     } 
         
 })
