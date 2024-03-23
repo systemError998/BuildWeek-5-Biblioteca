@@ -25,7 +25,7 @@ export default function HomePage() {
 
     await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error)); */
 
- axios.get("/api/author?&page=2").then(response=>console.log(response)).catch(error=>console.log(error));
+ axios.get("/api/book?&page=2").then(response=>console.log(response)).catch(error=>console.log(error));
   }
   const dispatch = useDispatch()
   const authors= useSelector(state=>state.authors.listaAuthors)
