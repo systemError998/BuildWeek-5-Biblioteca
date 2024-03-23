@@ -11,6 +11,7 @@ import Footer from '../Components/Footer'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAuthors } from '../slice/authorSlice';
 import { getCategorie } from '../slice/categorySlice';
+import FakeCarousel from '../Components/FakeCarousel';
 export default function HomePage() {
 
   async function handleSubmit(e) {
@@ -40,7 +41,7 @@ export default function HomePage() {
   useEffect(()=>{
     console.log(authors)
   },[authors])
-
+/* 
   useEffect(()=>{
     dispatch(getCategorie())
   },[])
@@ -48,27 +49,27 @@ export default function HomePage() {
   useEffect(()=>{
     console.log(category)
   },[category])
+   */
   
   return (
     <>
-    <div>HomePage
-       <button onClick={handleSubmit}>Cliccami</button></div>
+      <FakeCarousel />
       <Container>
       {/* {posts.length > 0 ?  */}
       <Row>
         <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
-          { <div style={{ height: "10rem", border: "1px solid black" }}></div> }
+          {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
           <CategoriesList />
         </Col>
         <Col md={{ span: 7 }} lg={{ span: 8 }}>
           {/* Componenti Main*/}
-          { <div style={{ height: "10rem", border: "1px solid black" }}></div> }
+          {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
           <BooksList />
           <Pagination />
         </Col>
         <Col className="d-none d-md-block" lg={2} style={{ position: "relative" }}>
           {/* Componenti Sidebar Destro*/}
-          { <div style={{ height: "10rem", border: "1px solid black" }}></div> }
+          {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
           <MyFavorites />
           <Pagination />
           <ActiveBookings />

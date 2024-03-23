@@ -30,19 +30,21 @@ export default function CategoriesList() {
     },[category])
 
 return (
-<div className='container bg-slate-900 rounded-md py-2.5'>
-    {array.map((c)=>(
-        <div className='row mx-1 justify-center'>
-        <button class="btn btn-blue my-2.5">
-        <img src="https://freesvg.org/img/Buecher-coloured.png" alt="metamask" class="w-6 h-6" />
-        <Link className='font-sans font-bold text-slate-900 no-underline '>{c}</Link>
-        </button>
-      {/* <div className="row p-1 mx-4 mb-3">
-            <Link className='text-light'>{c}</Link>
-        </div>  */}
-        </div>
-    ))}
-</div>
+    <div className='container bg-slate-900 rounded-md py-2.5'>
+    <div className="row mx-1 justify-center mb-2">
+                    <button className="btn btn-blue my-2.5 w-44 labelPreferiti">
+                    <img src="https://freesvg.org/img/Buecher-coloured.png" alt="metamask" class="w-6 h-6" />                <Link className='font-sans font-bold text-slate-900 no-underline text-sm cursor-default'>CATEGORIE</Link>
+                    </button>
+                </div>
+        {category.map((categoria)=>(
+            <div className='row mx-1 justify-center' key={categoria.id}>
+            <button class="btn btn-blue my-2.5">
+        
+            <Link className='font-sans font-bold text-slate-900 no-underline '>{categoria.name}</Link>
+            </button>
+            </div>
+        ))}
+    </div>
 )
 }
 

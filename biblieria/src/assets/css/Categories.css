@@ -2,7 +2,7 @@
     @apply font-sans font-bold uppercase text-sm no-underline  py-2 px-6 rounded-md  flex items-center gap-3;
   }
   .btn-blue {
-    @apply bg-white text-slate-900;
+    @apply bg-white/35 text-slate-900;
   }
   .btn-blue:hover {
     @apply bg-slate-600 text-white;
@@ -11,6 +11,17 @@
   .preferito {
     @apply font-sans font-bold uppercase text-sm no-underline  py-2 px-1 rounded-md  flex items-center gap-3;
   }
+
+  .labelPreferiti{
+    @apply bg-white/65
+  }
   .labelPreferiti:hover{
-    @apply bg-white text-slate-900 cursor-default;
+    @apply bg-white/65 text-slate-900 cursor-default;
+  }
+
+  .caroselloFack {
+    height: 80vh;
+    width: 85%;
+    display: flex;
+    margin: 0 auto;
   }
