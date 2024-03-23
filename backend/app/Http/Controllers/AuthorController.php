@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Http\Requests\StoreAuthorRequest;
 use App\Http\Requests\UpdateAuthorRequest;
+use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Author::with("books")->with("categories")->get();
+        ['page' => $page, "author"=>$author] = $request;
+        $page=$page ? $page : 1;
+        return Author::with("books")->with("categories")->where('full_name', 'like', "%$author%")->paginate(20, ['*'], 'page', $page);
     }
 
     /**

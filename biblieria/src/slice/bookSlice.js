@@ -2,26 +2,22 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from "../api/axios";
 
 const initialState = {
-        listaLibro: [],
-        loading: null,
-        error: "",
-        libroSelezionato: {},
-        categoriaSelezionata: null,
-        pagineTotali: 1,
-        paginaCorrente: 1,
-        risultatiTotali:0,
+    listaLibri: [],
+    loading: null,
+    error: "",
+    libroSelezionato: {},
+    categoriaSelezionata: null,
+    pagineTotali: 1,
+    paginaCorrente: 1,
+    risultatiTotali: 0,
 };
-export const getAllBooks = createAsyncThunk("getAllBooks/fetch", async (args = [null, 1, ""], { dispatch }) => {
-    return axios(url + postUrl + (args[0] ? (`&categories=` + args[0]) : "") +
-        (args[1] ? ("&page=" + args[1]) : "") + (args[2] ? ("&search=" + args[2]) : ""))
+export const getAllBooks = createAsyncThunk("getAllBooks/fetch", async (args = {}, { dispatch }) => {
+    let { page, category, author, title, abstract, year } = args;
+    return axios("/api/book?&" + (category ? (`&categories=` + category) : "") +
+        (page ? ("&page=" + page) : "") + (title ? ("&title=" + title) : ""))
         .then(response => {
-            if (args[1]) {
-                dispatch(setPaginaCorrenteBooks(args[1]));
-            } else {
-                dispatch(setPaginaCorrenteBooks(1));
-            }
-
-            return [response.data, response.headers["x-wp-totalpages"]]
+            console.log(response.data);
+            return response.data;
         })
 });
 
@@ -31,36 +27,35 @@ const chiamataBooks_slice = createSlice(
         initialState: initialState,
         reducers: create => ({
             selezionaCategoria: create.reducer((state, action) => {
-                state.posts.categoriaSelezionata = action.payload;
+                state.categoriaSelezionata = action.payload;
             }),
             selezionaLibro: create.reducer((state, action) => {
-                state.posts.postSelezionato = action.payload;
-            }),
-            setPaginaCorrenteBooks: create.reducer((state, action) => {
-                state.posts.paginaCorrente = action.payload;
+                state.postSelezionato = action.payload;
             }),
         }),
         extraReducers: builder => {
             builder
                 .addCase(getAllBooks.pending, (state, action) => {
-                    state.posts.loading = true;
-                
-                    state.posts.error = "";
+                    state.loading = true;
+                    state.error = "";
                 })
                 .addCase(getAllBooks.rejected, (state, action) => {
-                    state.posts.loading = false
-                    
-                    state.posts.error = "Errore nel caricamento dei dati!!!"
+                    state.loading = false
+
+                    state.error = "Errore nel caricamento dei dati!!!"
                 })
                 .addCase(getAllBooks.fulfilled, (state, action) => {
-                    state.posts.loading = false;
-                    state.posts.listaLibro = action.payload[0];
-                    state.posts.pagineTotali = action.payload[1];
-                    state.posts.error = "";
+                    console.log(action.payload);
+                    state.loading = false;
+                    state.listaLibri = action.payload.data;
+                    state.pagineTotali = action.payload.last_page;
+                    state.paginaCorrente = action.payload.current_page;
+                    state.risultatiTotali = action.payload.total
+                    state.error = "";
                 })
         }
     }
 )
 const { reducer, actions } = chiamataBooks_slice;
-export const { selezionaCategoria, selezionaLibro, setPaginaCorrenteBooks } = actions;
+export const { selezionaCategoria, selezionaLibro } = actions;
 export default reducer;
