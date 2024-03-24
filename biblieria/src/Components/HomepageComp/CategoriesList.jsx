@@ -32,7 +32,7 @@ export default function CategoriesList() {
 
 return (
     <>
-        <div className="navigation h-100">
+        <div className="navigation mt-3 rounded-md">
             <p className='uppercase font-sans font-semibold border-b-2 pb-2'> Categorie </p>
             <ul className="uppercase font-sans font-semibold text-center">
                 { category.map((categoria, index) => (

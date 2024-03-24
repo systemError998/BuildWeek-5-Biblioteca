@@ -39,10 +39,10 @@ return (
                     <div className='col-6 w-36'>
                         <img className=' h-36 ' src="https://m.media-amazon.com/images/I/41kbjmfuAdL._AC_UF1000,1000_QL80_.jpg" alt="" />
                     </div>
-                    <div className='col-6 p-0'>
-                        <p className='text-ellipsis '>viaggio al centro della terra</p>
-                        <p className='text-xs'>giulio verne</p>
-                        <button className='text-sm darkBlue py-2 px-4 text-white hover:text-blue-800'> ESTENDI </button>
+                    <div className='col-6 p-0 pt-1'>
+                        <p className='text-xs'>viaggio al centro della terra</p>
+                        <p className='text-sm'>giulio verne</p>
+                        <button className='text-sm darkBlue py-2 px-4 text-white hover:text-blue-800 mt-4'> ESTENDI </button>
                     </div>
                 </div>
             ))}

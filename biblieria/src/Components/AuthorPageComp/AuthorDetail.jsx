@@ -1,24 +1,30 @@
 import React from 'react'
+import '../../assets/css/babyStyle.css'
 
 export default function AuthorDetail() {
     return (
-        <div className="container bg-dark rounded-2 text-light p-5">
-            <div className="row d-flex justify-content-center">
-                <div className="col d-flex justify-content-between">
-                    <div className=''>
-                        <h1>Nome</h1>
-                        <p><b>Data di nascita: </b> <span className="text-secondary">1970</span></p>
-                        <p><b>NazionalitÃ : </b> <span className="text-secondary">bandierina demmerda</span></p>
+        <>
+        <div className="container px-0 bg-white mt-3 rounded-md">
+            <div className=" flex flex-initial ml-44 border border-white rounded-r-md relative">
+
+                <div className="flex justify-center gap-10 box-border w-1/2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Portrait_de_Dante.jpg/197px-Portrait_de_Dante.jpg" alt="" className="fotoAutore rounded-md" />
+                    <div>
+                        <div className='w-96 h-100 pt-2 rounded-lg darkText'>
+                            <p className="font-bold font-serif text-2xl pb-2 inline-block"> DANTE NASONE ALIGHIERI </p>
+                            <p className='font-sans '> FIRENZE </p>
+                            <p className='font-sans '> 1265 - 1321 </p>
+                        </div>
                     </div>
                 </div>
-                <div className="col d-flex justify-content-center">
-                    <div className='border-1 border-light text-center rounded-circle w-100' style={{height: "13em"}}>
-                        IMG
-                    </div>
-                </div>
+
+
+
             </div>
-            <div className="row gap-3 mt-3">
-                <h3>Libri di ...</h3>
+        </div>
+        <div className="container bg-white mt-3 rounded-md">
+            <div className="row gap-3 mt-4 pt-3">
+                <h3 className='darkText font-sans font-bold text-lg uppercase'>altri libri dello stesso autore</h3>
                 <div className="col border-1 border-light rounded-1" style={{height: "10em"}}>
                     librone
                 </div>
@@ -33,5 +39,7 @@ export default function AuthorDetail() {
                 </div>
             </div>
         </div>
+
+        </>
       )
 }

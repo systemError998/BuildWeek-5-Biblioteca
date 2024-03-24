@@ -8,6 +8,20 @@ body {
     background: #010A26;
 }
 
+.darkText {
+    color: #010A26;
+}
+
+.libricinoPreferito {
+    width: 6.5rem;
+}
+
+.fotoAutore {
+    object-fit: cover;
+    width: 20rem;
+    height: 30rem;
+}
+
 /* CAROSELLO DEL PORCO DIO */
 
 /* CAROSELLO FACK */
