@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('full_name');
             $table->year('year');
             $table->string('country');
+            $table->text("biografy");
+            $table->string("profile_img")->default("https://theworldmaker.com/wp-content/uploads/2022/08/Placeholder-Team-Image.jpg");
             $table->timestamps();
         });
     }

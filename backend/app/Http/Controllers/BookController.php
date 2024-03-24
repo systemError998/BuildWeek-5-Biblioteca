@@ -28,6 +28,7 @@ class BookController extends Controller
                     ->whereHas('author', function($query) use ($author) {
                         $query->where('full_name', 'like', "%$author%");
                     })
+                    ->latest()
                     ->paginate(20, ['*'], 'page', $page);
                 }
 

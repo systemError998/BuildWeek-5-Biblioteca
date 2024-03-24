@@ -16,7 +16,10 @@ class AuthorController extends Controller
     {
         ['page' => $page, "author"=>$author] = $request;
         $page=$page ? $page : 1;
-        return Author::with("books")->with("categories")->where('full_name', 'like', "%$author%")->paginate(20, ['*'], 'page', $page);
+        return Author::with("books")->with("categories")
+                        ->where('full_name', 'like', "%$author%")
+                        ->orderBy("full_name","asc")
+                        ->paginate(20, ['*'], 'page', $page);
     }
 
     /**
