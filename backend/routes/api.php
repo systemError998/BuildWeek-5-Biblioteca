@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource("/book",BookController::class);
+Route::resource("/book",BookController::class)->middleware('auth', 'verified', 'auth:sanctum');
 Route::resource("/author",AuthorController::class);
 Route::resource("/category",CategoryController::class);
 Route::resource("/booking",BookingController::class);
