@@ -33,6 +33,7 @@ export const AuthorPage = () => {
       {/* : <LoadingHomeComponent />}  */}
       </div>
       <Footer />
+
     </>
   )
 }

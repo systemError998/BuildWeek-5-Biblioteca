@@ -2,7 +2,7 @@
 import '../assets/css/prova.css'
 import React, { useEffect, useState } from 'react';
 import axios from "../api/axios";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row,Button } from "react-bootstrap";
 import CategoriesList from '../Components/HomepageComp/CategoriesList'
 import BooksList from '../Components/HomepageComp/BooksList'
 import LoadingHomeComponent from '../Components/HomepageComp/LoadingHomeComponent'
@@ -11,14 +11,19 @@ import MyFavorites from '../Components/MyFavorites'
 import ActiveBookings from '../Components/ActiveBookings'
 import Footer from '../Components/Footer'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAuthors } from '../slice/authorSlice';
+import { getAuthors } from '../slice/authorSlice';
 import { getCategorie } from '../slice/categorySlice';
+import {getAllBooks} from "../slice/bookSlice";
 import FakeCarousel from '../Components/FakeCarousel';
 import "../assets/css/babyStyle.css"
 
-
-
 export default function HomePage() {
+  const dispatch = useDispatch();
+  const authors= useSelector(state=>state.authors.listaAuthors);
+  const loading= useSelector(state=>state.authors.loading);
+  const erros= useSelector(state=>state.authors.error);
+  const category= useSelector(state=>state.categorie.listaCategorie);
+  const listaLibri = useSelector(state => state.libri.listaLibri);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,17 +37,17 @@ export default function HomePage() {
 
     await axios.get("/sanctum/csrf-cookie").then(response=>console.log(response)).catch(error=>console.log(error)); */
 
- axios.get("/api/book?&page=2").then(response=>console.log(response)).catch(error=>console.log(error));
+    dispatch(getAllBooks());
   }
-  const dispatch = useDispatch()
-  const authors= useSelector(state=>state.authors.listaAuthors)
-  const loading= useSelector(state=>state.authors.loading)
-  const erros= useSelector(state=>state.authors.error)
-  const category= useSelector(state=>state.categorie.listaCategorie)
+  
+
   
   useEffect(()=>{
-    dispatch(fetchAuthors())
+    dispatch(getAuthors())
   },[])
+  useEffect(()=>{
+    console.log(listaLibri);
+  },[listaLibri])
 
   useEffect(()=>{
     console.log(authors)
@@ -60,7 +65,7 @@ export default function HomePage() {
   return (
     <>
         <FakeCarousel />
-        
+        <Button onClick={handleSubmit}>CLICCA QUI PERDIANA</Button>
         {/* {posts.length > 0 ?  */}
         <div className='mx-3'>
         <Row className='px-1'>
@@ -86,7 +91,6 @@ export default function HomePage() {
           {/* : <LoadingHomeComponent />}  */}
         </div>
         <Footer />
-    </>
-   
+   </>
   )
 }

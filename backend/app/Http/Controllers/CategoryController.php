@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Category::with("books")->with("authors")->get();
+        return Category::with("books")->with("authors")->orderBy("name","asc")->get();
     }
 
     /**

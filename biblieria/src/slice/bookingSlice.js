@@ -35,7 +35,7 @@ export const booking_slice = createSlice(
                     state.loading=false
                 })
                 .addCase(getBookings.fulfilled,(state,action)=>{
-                    state.bookings=action.payload
+                    state.listaBooking=action.payload
                     state.loading=false
         })
     }

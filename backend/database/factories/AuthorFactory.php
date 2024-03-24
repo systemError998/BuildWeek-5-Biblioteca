@@ -20,6 +20,7 @@ class AuthorFactory extends Factory
             'full_name'=>fake()->name(),
             'country'=>fake()->country(),
             'year'=>fake()->year($max = '1980'),
+            "biografy"=>fake()->text(200),
         ];
     }
 }
