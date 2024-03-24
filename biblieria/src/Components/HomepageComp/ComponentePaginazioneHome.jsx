@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "react-bootstrap/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { UseDispatch } from "react-redux";
 import { getAllBooks } from "../../slice/bookSlice";
 
 

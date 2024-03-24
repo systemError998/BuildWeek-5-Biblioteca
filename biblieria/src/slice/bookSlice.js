@@ -13,8 +13,8 @@ const initialState = {
 };
 export const getAllBooks = createAsyncThunk("getAllBooks/fetch", async (args = {}, { dispatch }) => {
     let { page, category, author, title, abstract, year } = args;
-    return axios("/api/book?&" + (category ? (`&category=` + category) : "") +
-        (page ? ("&page=" + page) : "") + (title ? ("&title=" + title) : ""))
+    return axios("/api/book?" + (category ? (`&category=` + category) : "") +
+        (page ? ("&page=" + page) : "") + (title ? ("&title=" + title) : "") + (author ? ("&author=" + author) : "")+ (abstract ? ("&abstract=" + abstract) : "")+ (year ? ("&year=" + year) : ""))
         .then(response => {
             console.log(response.data);
             return response.data;

@@ -10,14 +10,14 @@ import MyNavbar from './Components/MyNavbar';
 import Register from './Pages/Register';
 import { BookDetail } from './Pages/BookDetail';
 import { AuthorPage } from './Pages/AuthorPage';
-
+import Scrollata from './Components/Scrollata';
 
 
 function App() {
   return (
     <BrowserRouter scrollToTop={true}>
       <MyNavbar />
-    {/*   <Scrollata /> */}
+      <Scrollata /> 
       <Routes>
         <Route path="/" element={<HomePage />} />  
         <Route path="*" element={< NotFoundPage />} />
@@ -25,8 +25,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/book/:id' element={<BookDetail/>}/>
         <Route path='/author/:id' element={<AuthorPage/>}/>
-        <Route path='/profile' element={<ProfilePage/>}/>
-        
+        <Route path='/profile' element={<ProfilePage/>}/>        
       </Routes>
     </BrowserRouter>
   );

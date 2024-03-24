@@ -5,7 +5,7 @@ import BookDetailComponent from '../Components/BookDetailComp/BookDetailComponen
 import MyFavorites from '../Components/MyFavorites'
 import Pagination from '../Components/Pagination'
 import ActiveBookings from '../Components/ActiveBookings'
-import Footer from '../Components/Footer'
+import Footer from '../Components/Footer';
 
 
 
