@@ -2,10 +2,10 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Input } from "@material-tailwind/react";
+import "../assets/css/babyStyle.css"
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
-
 
 //VOCI NAVBAR
 const navigation = [
@@ -18,6 +18,7 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+
 const navigate = useNavigate();
 
   const handleLogout = async (e) => {

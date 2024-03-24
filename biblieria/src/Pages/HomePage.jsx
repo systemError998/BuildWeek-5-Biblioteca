@@ -1,3 +1,5 @@
+
+import '../assets/css/prova.css'
 import React, { useEffect, useState } from 'react';
 import axios from "../api/axios";
 import { Container, Col, Row,Button } from "react-bootstrap";
@@ -13,6 +15,7 @@ import { getAuthors } from '../slice/authorSlice';
 import { getCategorie } from '../slice/categorySlice';
 import {getAllBooks} from "../slice/bookSlice";
 import FakeCarousel from '../Components/FakeCarousel';
+import "../assets/css/babyStyle.css"
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -61,34 +64,33 @@ export default function HomePage() {
   
   return (
     <>
-      <FakeCarousel />
-      <Button onClick={handleSubmit}>CLICCA QUI PERDIANA</Button>
-      <Container>
-      {/* {posts.length > 0 ?  */}
-      <Row>
-        <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
-          {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
-          <CategoriesList />
-        </Col>
-        <Col md={{ span: 7 }} lg={{ span: 8 }}>
-          {/* Componenti Main*/}
-          {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
-          <BooksList />
-          <Pagination />
-        </Col>
-        <Col className="d-none d-md-block" lg={2} style={{ position: "relative" }}>
-          {/* Componenti Sidebar Destro*/}
-          {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
-          <MyFavorites />
-          <ActiveBookings />
-        </Col>
-      </Row> 
-      {/* : <LoadingHomeComponent />}  */}
-
-      <Footer />
-
-      </Container>
-    </>
-   
+        <FakeCarousel />
+        <Button onClick={handleSubmit}>CLICCA QUI PERDIANA</Button>
+        {/* {posts.length > 0 ?  */}
+        <div className='mx-3'>
+        <Row className='px-1'>
+            <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
+              {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
+              <CategoriesList />
+            </Col>
+            <Col md={{ span: 7 }} lg={{ span: 8 }}>
+              {/* Componenti Main*/}
+              {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
+              <BooksList />
+              <Pagination />
+            </Col>
+            <Col className="d-none d-md-block" lg={2} style={{ position: "relative" }}>
+              {/* Componenti Sidebar Destro*/}
+              {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
+              <MyFavorites />
+              <Pagination />
+              <ActiveBookings />
+              <Pagination />
+            </Col>
+          </Row> 
+          {/* : <LoadingHomeComponent />}  */}
+        </div>
+        <Footer />
+   </>
   )
 }

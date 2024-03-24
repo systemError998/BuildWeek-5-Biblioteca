@@ -1,35 +1,43 @@
-.btn {
-    @apply font-sans font-bold uppercase text-sm no-underline  py-2 px-6 rounded-md  flex items-center gap-3;
-  }
-  .btn-blue {
-    @apply bg-transparent text-white;
-  }
-  .btn-blue:hover {
-    @apply bg-slate-600 text-white;
-  }
+.navigation {;
+  background: white;
+  color: #010A26;
+  transition: width 0.5s;
+  padding: 1rem 0;
+  text-align: center;
 
-  .preferito {
-    @apply font-sans font-bold uppercase text-sm no-underline py-2 px-1 rounded-md flex items-center gap-1;
-  }
-  .preferitoText p:first-child {
-    font-size:0.6rem;
-  }
-  .preferitoText {
-    font-size:0.5rem;
-  }
+}
+
+.navigation ul {
+    line-height: 2rem;
+    margin: 0.5rem 0;
+}
+.navigation ul li {
+  padding: 0.3rem 0;
+  margin: 0.5rem 0;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.iconcina {
+  min-width: 1rem;
+  height: 1rem;
+}
+
+.iconcina svg {
+  min-width: 2rem;
+  height: 2rem;
+}
+
+testoSide {
+  margin: auto 0;
+}
 
 
-
-  .labelPreferiti{
-    @apply bg-white/65
-  }
-  .labelPreferiti:hover{
-    @apply bg-white/65 text-slate-900 cursor-default;
-  }
-
-  .caroselloFack {
-    height: 80vh;
-    width: 85%;
-    display: flex;
-    margin: 0 auto;
-  }
+.navigation ul li.active {
+  background: #010A26;;
+  color: white;
+}
+.navigation ul li:hover {
+  background: #010A26;;
+  color: white;
+}
