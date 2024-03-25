@@ -7,10 +7,11 @@ import {
 import { Button } from "react-bootstrap";
 import axios from "../api/axios";
 
-export function UsersListItem({ user }) {
+export function UsersListItem({ user, getAllUsers }) {
   const deleteUser = (id) => {
-    axios.delete("/admin/user/" + id);
-    // .then(() => getUsers())
+    axios.delete("/admin/user/" + id)
+    .then(() => getAllUsers())
+    
   };
 
   return (
