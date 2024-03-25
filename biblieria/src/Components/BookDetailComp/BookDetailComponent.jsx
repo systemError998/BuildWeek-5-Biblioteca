@@ -44,7 +44,12 @@ return (
     <div className="container bg-white rounded-2 p-5 my-5 font-sans">
         <div>
            {user && user.is_admin ? 
-           (<button className='btn btn-light w-75'>Elimina libro</button>)
+           (
+           <div>
+            <button className='btn btn-light w-75'>Elimina libro</button>
+            <ModBook/>
+           </div> 
+           )
             :
             ('')
         }
