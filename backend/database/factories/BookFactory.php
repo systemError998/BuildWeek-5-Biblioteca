@@ -18,12 +18,11 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
-        $copieTotali = rand(1,10);
-        $copieDisponibili = rand(0, $copieTotali);
+        $copieDisponibili = rand(1,10);
+     
         return [
            'title'=>fake()->text(20),
            'year'=>fake()->year(),
-           'total_copies'=>$copieTotali,
            'available_copies'=>$copieDisponibili,
            'author_id'=>Author::get()->random()->id,
            'category_id'=>Category::get()->random()->id,

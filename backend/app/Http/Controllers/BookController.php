@@ -50,9 +50,6 @@ class BookController extends Controller
         $newBook = $request->only(['title','year','abstract',"author_id","category_id"]);
         if( $request->has("cover_url")){
             $newBook["cover_url"] = $request->cover_url;
-        }if( $request->has("total_copies")){
-            $newBook["total_copies"] = $request->total_copies;
-
         }if( $request->has("available_copies")){
             $newBook["available_copies"] = $request->available_copies;
         }

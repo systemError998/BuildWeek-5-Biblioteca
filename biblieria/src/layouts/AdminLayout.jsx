@@ -7,7 +7,6 @@ export default function AdminLayout() {
 
     const {user} = useAuthContext()
   return user.is_admin ? <>
-
   <Outlet />
 </> : <ErrorNotAuthorized />
 }
