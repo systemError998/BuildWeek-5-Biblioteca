@@ -20,4 +20,8 @@ class Book extends Model
     public function category () : BelongsTo  {
         return $this->belongsTo(Category::class); 
     }
+
+    public function favorites () : HasMany  {
+        return $this->hasMany(favorites::class); 
+    }
 }
