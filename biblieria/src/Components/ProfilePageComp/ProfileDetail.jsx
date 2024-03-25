@@ -6,7 +6,7 @@ export default function ProfileDetail() {
 
     <>
         <div className="container px-0 bg-white mt-3 rounded-md">
-            <div class=" flex flex-initial ml-44 darkBlue border border-white rounded-r-md relative">
+            <div className=" flex flex-initial ml-44 darkBlue border border-white rounded-r-md relative">
 
                 <button className=''>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-7 h-7 absolute right-5 top-5 cursor-pointer transition ease-in-out delay-150 hover:-translate-1 hover:scale-110 duration-300">
@@ -15,11 +15,11 @@ export default function ProfileDetail() {
                     </svg>
                 </button>
 
-                <div class="flex justify-center gap-10 box-border py-5 w-1/2">
-                    <img src="https://i.pinimg.com/564x/ce/b2/71/ceb2711285d45d4d5cf73cbf1da0d1d9.jpg" alt="" class="w-64 rounded-full" />
+                <div className="flex justify-center gap-10 box-border py-5 w-1/2">
+                    <img src="https://i.pinimg.com/564x/ce/b2/71/ceb2711285d45d4d5cf73cbf1da0d1d9.jpg" alt="" className="w-64 rounded-full" />
                     <div>
                         <div className='w-96 h-100 p-5 rounded-lg'>
-                            <p class="font-bold font-serif text-4xl pb-2 inline-block text-white"> BARBIE BARBONA </p>
+                            <p className="font-bold font-serif text-4xl pb-2 inline-block text-white"> BARBIE BARBONA </p>
                             <p className='font-sans text-white'> BARBIEBARBONA@KEN.COM </p>
                         </div>
                     </div>

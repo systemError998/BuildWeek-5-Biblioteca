@@ -89,7 +89,6 @@ export default function HomePage() {
               {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
               <MyFavorites />
               <Pagination />
-              <ActiveBookings />
               <Pagination />
             </Col>
           </Row> 

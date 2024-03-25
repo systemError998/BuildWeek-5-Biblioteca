@@ -31,8 +31,8 @@ export default function Login() {
               className="w-75 position-relative top-0 start-50 translate-middle-x"
               onSubmit={handleLogin}
             >
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">
+              <div className="mb-3">
+                <label for="exampleInputEmail1" className="form-label">
                   Email address
                 </label>
                 <input
@@ -50,7 +50,7 @@ export default function Login() {
                   </div>
                 )}
               </div>
-              <div class="mb-3">
+              <div className="mb-3">
                 <label for="exampleInputPassword1" className="form-label">
                   Password
                 </label>
@@ -69,14 +69,14 @@ export default function Login() {
                   </div>
                 )}
               </div>
-              <div class="mb-3 form-check">
+              <div className="mb-3 form-check">
                 <input
                   type="checkbox"
                   name="check"
                   className="form-check-input"
                   id="exampleCheck1"
                 />
-                <label class="form-check-label" for="exampleCheck1">
+                <label className="form-check-label" for="exampleCheck1">
                   Check me out
                 </label>
               </div>

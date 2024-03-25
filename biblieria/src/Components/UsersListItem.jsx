@@ -6,12 +6,14 @@ import {
 } from "@material-tailwind/react";
 import { Button } from "react-bootstrap";
 import axios from "../api/axios";
+import { useState } from "react";
 
 export function UsersListItem({ user, getAllUsers }) {
+  const [loading, setLoading] = useState(false);
+
   const deleteUser = (id) => {
-    axios.delete("/admin/user/" + id)
-    .then(() => getAllUsers())
-    
+    setLoading(true);
+    axios.delete("/admin/user/" + id).then(() => getAllUsers()).then(() => setLoading(false));
   };
 
   return (
@@ -26,9 +28,10 @@ export function UsersListItem({ user, getAllUsers }) {
         <Typography variant="small" color="gray" className="font-normal">
           {user.email}
         </Typography>
-
       </div>
-        <Button className="float-end" onClick={() => deleteUser(user.id)}>X</Button>
+      <Button disabled={loading} className="float-end" onClick={() => deleteUser(user.id)}>
+        {!loading ? 'X' : 'o'}
+      </Button>
     </ListItem>
   );
 }
