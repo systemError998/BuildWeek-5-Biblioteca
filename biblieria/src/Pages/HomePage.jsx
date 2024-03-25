@@ -16,6 +16,7 @@ import { getCategorie } from '../slice/categorySlice';
 import {getAllBooks} from "../slice/bookSlice";
 import FakeCarousel from '../Components/FakeCarousel';
 import "../assets/css/babyStyle.css"
+import ModBook from '../Components/ModBook';
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -95,6 +96,7 @@ export default function HomePage() {
           {/* : <LoadingHomeComponent />}  */}
         </div>
         <Footer />
+        <ModBook/>
    </>
   )
 }

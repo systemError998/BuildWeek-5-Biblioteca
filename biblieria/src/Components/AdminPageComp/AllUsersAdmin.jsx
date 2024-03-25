@@ -16,5 +16,5 @@ export default function AllUsersAdmin() {
     getAllUsers();
   }, []);
 
-  return <>{users && <UsersList users={users} />}</>;
+  return <>{users && <UsersList users={users} getAllUsers={getAllUsers}/>}</>;
 }

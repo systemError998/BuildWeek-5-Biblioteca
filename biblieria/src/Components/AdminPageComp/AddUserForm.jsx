@@ -16,6 +16,7 @@ export function AddUserForm() {
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const [email_verified_at, setEmailVerifiedAt] = useState(new Date());
   const [is_admin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(false);
   //   const [profile_img, setProfileImage] = useState(
   //     "https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
   //   );
@@ -26,6 +27,7 @@ export function AddUserForm() {
 
   const handleAddNewUser = async (event) => {
     event.preventDefault();
+    setLoading(true);
     newUser({
       name,
       email,
@@ -33,7 +35,7 @@ export function AddUserForm() {
       password_confirmation,
       is_admin,
       //   profile_img
-    });
+    }).finally(() => setLoading(false));
   };
 
   return (
@@ -53,6 +55,7 @@ export function AddUserForm() {
             Name
           </Typography>
           <Input
+          type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             size="lg"
@@ -69,6 +72,7 @@ export function AddUserForm() {
             Email
           </Typography>
           <Input
+          type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             size="lg"
@@ -131,7 +135,7 @@ export function AddUserForm() {
           containerProps={{ className: "-ml-2.5" }}
         />
         <Button type="submit" className="mt-6" fullWidth>
-          Create
+          {loading ? 'loading' : 'create'}
         </Button>
       </form>
     </Card>
