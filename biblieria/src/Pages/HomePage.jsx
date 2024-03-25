@@ -61,6 +61,10 @@ export default function HomePage() {
     console.log(category)
   },[category])
    */
+
+  useEffect(()=>{
+    axios("/api/favorites").then(response=> console.log(response))
+  },[])
   
   return (
     <>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\favorites;
 use App\Http\Requests\StorefavoritesRequest;
 use App\Http\Requests\UpdatefavoritesRequest;
+use Illuminate\Support\Facades\Auth;
 
 class FavoritesController extends Controller
 {
@@ -13,7 +14,8 @@ class FavoritesController extends Controller
      */
     public function index()
     {
-        //
+       return favorites::where("user_id", Auth::user()->id)->get();
+        // return favorites::get();
     }
 
     /**
@@ -29,7 +31,14 @@ class FavoritesController extends Controller
      */
     public function store(StorefavoritesRequest $request)
     {
-        //
+        $newFav = $request->only(["book_id"]);
+        $newFav["user_id"]= Auth::user()->id;
+        $fav = favorites::create($newFav);
+        if($fav){
+           return "favorito inserito";
+        } else {
+            return ["message" => "Errore durante la creazione del favorito", "error"=>"favorito non presente o che cazzo ne so"];
+        };
     }
 
     /**
@@ -61,6 +70,7 @@ class FavoritesController extends Controller
      */
     public function destroy(favorites $favorites)
     {
-        //
+        $delteFav = $favorites->delete();
+        return $delteFav ? "fav eliminato" : "fav non trovato";
     }
 }
