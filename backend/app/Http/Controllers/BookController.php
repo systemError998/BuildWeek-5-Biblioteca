@@ -79,7 +79,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return $book->load("author")->load("category");
     }
 
     /**
