@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../../api/axios'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import useAuthContext from "../../context/AuthContext";
@@ -17,7 +17,7 @@ export default function BookDetailComponent() {
 
     let [book, setBook] = useState({})
     let dispatch= useDispatch()
-   
+   const navigate = useNavigate();
 
     useEffect(() => {
         axios('/api/book/'+id).
@@ -39,47 +39,51 @@ export default function BookDetailComponent() {
     
 
                 
-                    return (
-                        book.author ? <> 
-                        <div className="container bg-dark rounded-2 text-light p-5">
-                            <div>
-                               {user?.is_admin && <div><button className='btn btn-light w-75'>Elimina libro</button> <ModBook/></div> }
-                            </div>
-                            <div className="row">
-                                <div className="col">
-                                    <div className='border-1 border-light rounded-1'>
-                                        <Image src={book.cover_url}></Image>
-                                    </div>
-                                </div>
-                                <div className="col">
-                                
-                                    <h1>Titolo Libro: {book.title}</h1>
-                                    <h3>Autore: {book.author.full_name}</h3>
-                                    <div className='my-3'>
-                                        <p className='m-0'><b>Anno pubblicazione: </b> <span className='text-secondary'>{book.year}</span></p>
-                                        <p className='m-0'><b>Categoria: </b> <span className='text-secondary'>{book.category.name}</span></p>
-                                        
-                                        <p className='m-0'><b>Copie disponibili: </b> <span className='text-secondary'>{book.available_copies}</span></p>
-                                    </div>
-                                    <div className='my-4'>
-                                       {book.abstract}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row text-center">
-                                <div className="col">
-                                    
-                                    <button className='btn btn-light w-75' onClick={()=> dispatch(createBooking(book.id))}>PRENOTA</button>
-                                    
-
-                                </div>
-                            </div>
-                        </div>
-                        </> :
-                        <div class='container bg-info p-5'>
-                        <h1>mettere gestione caricamento</h1>
-                    </div>
-                      )
+return (
+    book.author ? <> 
+    <div className="container bg-white rounded-2 p-5 my-5 font-sans">
+        <div>
+           {user && user.is_admin ? 
+           (<button className='btn btn-light w-75'>Elimina libro</button>)
+            :
+            ('')
+        }
+        </div>
+        <div className="row">
+            <div className="col">
+                <div className='border-1 border-light rounded-1'>
+                    <Image src={book.cover_url}></Image>
+                </div>
+            </div>
+            <div className="col">
+            
+                <h1 className='uppercase fs-2'>{book.title}</h1>
+                <h3 className='text-secondary'>
+                    <button className="flex no-underline"  onClick={()=> navigate(`/author/${book.author.id}`)}>
+                        <span className="testoSide"> {book.author.full_name} </span>
+                    </button>
+                </h3>
+                <div className='my-3'>
+                    <p className='m-0'><b>Anno pubblicazione: </b> <span className='text-secondary'>{book.year}</span></p>
+                    <p className='m-0'><b>Categoria: </b> <span className='text-secondary'>{book.category.name}</span></p>
+                    <p className='m-0'><b>Copie disponibili: </b> <span className='text-secondary'>{book.available_copies}</span></p>
+                </div>
+                <div className='my-4'>
+                   {book.abstract}
+                </div>
+            </div>
+        </div>
+        <div className="row text-center mt-3">
+            <div className="col">
+                <button className='btn btn-dark w-75' onClick={()=> dispatch(createBooking(book.id))}>PRENOTA</button>
+            </div>
+        </div>
+    </div>
+    </> :
+    <div class='container bg-info p-5'>
+    <h1>mettere gestione caricamento</h1>
+</div>
+  )
                
                     
                 }
