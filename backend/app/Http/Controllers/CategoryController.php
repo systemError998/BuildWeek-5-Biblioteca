@@ -31,7 +31,6 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $newCategory=$request->only(["name"]);
-       
         try {
             $category=Categoria::create($newCategory);
             if ($category) {

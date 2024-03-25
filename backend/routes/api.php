@@ -26,8 +26,3 @@ Route::resource("/booking",BookingController::class);
 
 
 
-Route::get('/user', function (Request $request) {
-    return "api/user";
-
-    /* return $request->user(); */
-});
