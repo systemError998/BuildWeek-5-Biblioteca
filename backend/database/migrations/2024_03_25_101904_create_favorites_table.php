@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Favorites', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user_id");
             $table->foreign("user_id")->on("users")->references("id")->onDelete("cascade")->onUpdate("cascade");
