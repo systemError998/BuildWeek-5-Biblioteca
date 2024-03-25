@@ -15,6 +15,8 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 import AuthLayout from "./layouts/AuthLayout.jsx";
 import GuestLayout from "./layouts/GuestLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
+import AdminPage from "./Pages/admin/AdminPage.jsx";
+import AddUserPage from "./Pages/admin/AddUserPage.jsx";
 
 function App() {
   return (
@@ -28,15 +30,17 @@ function App() {
             <Route path="/book/:id" element={<BookDetail />} />
             <Route path="/author/:id" element={<AuthorPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route element={<AdminLayout />}>
-              {/* rotte admin */}
-            </Route>
           </Route>
           <Route element={<GuestLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
-          
+          <Route element={<AdminLayout />}>
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="/admin/createUser" element={<AddUserPage />} />
+
+          </Route>
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>

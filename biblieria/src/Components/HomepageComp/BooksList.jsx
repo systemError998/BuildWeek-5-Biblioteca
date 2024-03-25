@@ -1,7 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllBooks } from '../../slice/bookSlice';
+import CardLibro from '../CardLibro';
 
 export default function BooksList() {
+
+  const dispatch = useDispatch()
+
+  const books = useSelector( state => state.libri.listaLibri)
+  
+
+  useEffect(() => {
+    dispatch(getAllBooks())
+  }, [])
+
+  console.log(books);
+
   return (
-    <div>BooksList</div>
+    <>
+        
+        <div className="container bg-white rounded-md">
+            <div className="flex flex-wrap justify-center gap-x-10 gap-y-5 mt-4 pt-3">
+                { books.map((book, index) => (
+                        <CardLibro key={index} libro={book} />
+                    ))}
+            </div>
+        </div>
+
+        </>
   )
 }
