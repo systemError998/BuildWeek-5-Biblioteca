@@ -17,15 +17,19 @@ class BookController extends Controller
     public function index(Request $request)
     {
 
-    ['page' => $page, 'category' => $category, 'title' => $title,"author"=>$author, "abstract"=>$abstract , "year"=>$year] = $request;
+    ['page' => $page, 'category' => $category, 'category_id' => $category_id, 'title' => $title,"author"=>$author, "abstract"=>$abstract , "year"=>$year] = $request;
         $page=$page ? $page : 1;
         
         return Book::with("author")->with("category")
                     ->where("title","like","%$title%")
                     ->where("abstract","like","%$abstract%")
                     ->where("year","like","%$year%")
-                    ->whereHas('category', function($query) use ($category) {
-                        $query->where('name', 'like', "%$category%");
+                    ->whereHas('category', function($query) use ($category,$category_id) {
+                        if($category_id){
+                            $query->where('id', $category_id);
+                        }else{
+                            $query->where('name', 'like', "%$category%"); 
+                        }                                              
                     })
                     ->whereHas('author', function($query) use ($author) {
                         $query->where('full_name', 'like', "%$author%");
@@ -79,7 +83,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return $book->load("author")->load("category");
+        return ["book"=>$book->load("author")->load("category"), "categories"=>Category::orderBy("name")->all(),"authors"=> Author::orderBy("full_name")->all()];
     }
 
     /**

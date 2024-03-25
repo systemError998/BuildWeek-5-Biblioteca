@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 /* Route::resource("/book",BookController::class); */
-Route::resource("/author",AuthorController::class);
+/* Route::resource("/author",AuthorController::class);
 Route::resource("/category",CategoryController::class);
-Route::resource("/booking",BookingController::class);
+Route::resource("/booking",BookingController::class); */
 
 
 
