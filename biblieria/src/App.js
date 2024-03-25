@@ -17,6 +17,8 @@ import GuestLayout from "./layouts/GuestLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import AdminPage from "./Pages/admin/AdminPage.jsx";
 import AddUserPage from "./Pages/admin/AddUserPage.jsx";
+import ForgotPassword from "./Pages/ForgotPassword.jsx";
+import ResetPassword from "./Pages/ResetPassword.jsx";
 
 function App() {
   return (
@@ -34,11 +36,12 @@ function App() {
           <Route element={<GuestLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/password-reset/:token" element={<ResetPassword /> } />
           </Route>
           <Route element={<AdminLayout />}>
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/createUser" element={<AddUserPage />} />
-
           </Route>
 
           <Route path="*" element={<NotFoundPage />} />
