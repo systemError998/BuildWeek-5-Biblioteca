@@ -15,13 +15,17 @@ class UserController extends Controller
     {
         return User::with("bookings")->with("favourites")->get();
     }
+
+
     public function store(Request $request): Response
     {
+
+        // dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            "is_admin"=>["boolean"]
+            "is_admin"=>["bool"]
         ]);
 
         $user = User::create([
