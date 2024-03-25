@@ -1,12 +1,23 @@
+import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Input } from "@material-tailwind/react";
 import "../assets/css/babyStyle.css";
 import NavbarUser from "./NavbarUser";
 import useAuthContext from "../context/AuthContext";
 import GuestButtons from "./GuestButtons";
 import { Link, useLocation } from "react-router-dom";
+import {
+  Button,
+  Dialog,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Typography,
+  Input,
+  Checkbox,
+} from "@material-tailwind/react";
 
 //VOCI NAVBAR
 const navigation = [
@@ -19,6 +30,10 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+
+  const [openModal, setOpenModal] = React.useState(false);
+  const handleOpen = () => setOpenModal((cur) => !cur);
+
   const { user, logout } = useAuthContext();
 
   const { pathname } = useLocation();
@@ -94,6 +109,7 @@ export default function Example() {
                 </div>
               </div>
 
+
               {/* Barra di ricerca */}
               <div className="hidden sm:block sm:ml-6 lg:w-96 md:w-44">
                 <div className="flex">
@@ -102,8 +118,44 @@ export default function Example() {
                     placeholder="Search..."
                     className="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
+
+                  <button className="bg-white p-1 ml-1 rounded-md" onClick={handleOpen}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                    </svg>
+                  </button>
+                  <Dialog
+                    size="xs"
+                    open={openModal}
+                    handler={handleOpen}
+                    className="bg-transparent shadow-none"
+                  >
+                    <Card className="mx-auto w-full max-w-[24rem]">
+                      <CardBody className="flex flex-col gap-4 justify-center">
+                      <Typography variant="h4" color="blue-gray" className="text-center">
+                        RICERCA AVANZATA
+                      </Typography>
+                      <div className="w-72 flex flex-wrap mx-auto gap-y-2">
+                        <Input color="indigo" label="TITOLO LIBRO" />
+                        <Input color="indigo" label="NOME AUTORE" />
+                        <Input color="indigo" label="ANNO PUBBLICAZIONE" />
+                        <Input color="indigo" label="ESTRATTO" />
+                      </div>
+                        <CardFooter>
+
+                        <button
+          class="block w-full select-none rounded-lg bg-gradient-to-tr from-indigo-900 to-indigo-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          CERCA
+        </button>
+
+                      </CardFooter>
+                      </CardBody>
+                    </Card>
+                  </Dialog>
                 </div>
               </div>
+
 
               {/* Profile dropdown */}
               {user ? (
@@ -130,10 +182,45 @@ export default function Example() {
                   aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
+
+                  <Dialog
+                    size="xs"
+                    open={open}
+                    handler={handleOpen}
+                    className="bg-transparent shadow-none"
+                  >
+                    <Card className="mx-auto w-full max-w-[28rem]">
+                      <CardBody className="flex flex-col gap-4">
+                        <Typography variant="h4" color="blue-gray">
+                          Ricerca avanzata
+                        </Typography>
+                        <Typography className="-mb-2" variant="h6">
+                          Your Email
+                        </Typography>
+                        <Input label="Email" size="lg" />
+                        <Typography className="-mb-2" variant="h6">
+                          Your Password
+                        </Typography>
+                        <Input label="Password" size="lg" />
+                        <div className="-ml-2.5 -mt-3">
+                          <Checkbox label="Remember Me" />
+                        </div>
+                      </CardBody>
+                      <CardFooter className="pt-0">
+                        <Button variant="gradient" onClick={handleOpen} fullWidth>
+                          Sign In
+                        </Button>
+                       
+                      </CardFooter>
+                    </Card>
+                  </Dialog>
+
                 </Disclosure.Button>
               ))}
             </div>
           </Disclosure.Panel>
+
+
         </>
       )}
     </Disclosure>
