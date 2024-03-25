@@ -21,15 +21,15 @@ export default function LeftBar() {
     },[])
     
     useEffect(()=>{
-        console.log(category)
-    },[category]) 
+        console.log(categoriaSelezionata)
+    },[categoriaSelezionata]) 
 
 return (
     <>
         <div className="navigation mt-4 rounded-md">
             <p className='uppercase font-sans font-semibold border-b-2 pb-2'> Categorie </p>
             <ul className="uppercase font-sans font-semibold text-center">
-            <li className={"list text-center " + categoriaSelezionata == null ? 'active' : ''} >
+            <li className={"list text-center " + (!categoriaSelezionata ? 'active' : '')} >
                 <button className="flex gap-1 no-underline uppercase "  onClick={() => { dispatch(getAllBooks()); dispatch(selezionaCategoria(null)) }}>
                     <span className="iconcina w-7 sm:mx-2 mx-3 inline">
                     </span>
