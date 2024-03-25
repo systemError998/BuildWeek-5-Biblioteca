@@ -9,11 +9,11 @@ import { createBooking } from '../../slice/bookingSlice'
 
 export default function BookDetailComponent() {
     const {user} = useAuthContext();
+    
     const mybooking = useSelector(state => state.bookings.listaBooking)
     console.log(mybooking)
-    
-    let {id}= useParams()
-    
+   let {id}= useParams()
+
     let [book, setBook] = useState({})
     let dispatch= useDispatch()
    
@@ -29,7 +29,12 @@ export default function BookDetailComponent() {
         
     },[])
 
-    useEffect(() => console.log(book.title), [book])
+    useEffect(() => {
+        if(mybooking){
+        let alreadyBooked= mybooking.some(b => b.book_id == id)
+        console.log(alreadyBooked)
+        }
+}, [book])
     
 
                 
@@ -54,7 +59,7 @@ export default function BookDetailComponent() {
                                         <p className='m-0'><b>Anno pubblicazione: </b> <span className='text-secondary'>{book.year}</span></p>
                                         <p className='m-0'><b>Categoria: </b> <span className='text-secondary'>{book.category.name}</span></p>
                                         
-                                        <p className='m-0'><b>Copie disponibili: </b> <span className='text-secondary'>{book.total_copies}</span></p>
+                                        <p className='m-0'><b>Copie disponibili: </b> <span className='text-secondary'>{book.available_copies}</span></p>
                                     </div>
                                     <div className='my-4'>
                                        {book.abstract}
@@ -63,6 +68,7 @@ export default function BookDetailComponent() {
                             </div>
                             <div className="row text-center">
                                 <div className="col">
+                                    
                                     <button className='btn btn-light w-75' onClick={()=> dispatch(createBooking(book.id))}>PRENOTA</button>
                                     
 
