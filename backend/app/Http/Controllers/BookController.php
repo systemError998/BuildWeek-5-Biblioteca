@@ -95,6 +95,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        try {
+            $book->delete();
+            return ["message"=>"l'oggetto è stato eliminato con successo"];
+        } catch (\Throwable $th) {
+            return ["message"=>"Si è verificato un errore", "error"=>$th];
+        }
     }
 }
