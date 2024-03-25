@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Author extends Model
 {
     use HasFactory;
-    
+    protected $fillable = [];
     public function books () : HasMany {
         return $this->hasMany(Book::class);
     }

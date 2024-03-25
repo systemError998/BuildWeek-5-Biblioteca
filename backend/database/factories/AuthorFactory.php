@@ -21,7 +21,7 @@ class AuthorFactory extends Factory
             'full_name'=>fake()->name(),
             'country'=>fake()->country(),
             'year'=>fake()->year,
-            "biography"=>fake()->text(200),
+            "biography"=>fake()->paragraphs(5,true),
         ];
     }
 }
