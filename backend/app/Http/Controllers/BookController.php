@@ -17,33 +17,33 @@ class BookController extends Controller
     public function index(Request $request)
     {
 
-    ['page' => $page, 'category' => $category, 'category_id' => $category_id, 'title' => $title,"author"=>$author, "abstract"=>$abstract , "year"=>$year] = $request;
-        $page=$page ? $page : 1;
-        
+        ['page' => $page, 'category' => $category, 'category_id' => $category_id, 'title' => $title, "author" => $author, "abstract" => $abstract, "year" => $year] = $request;
+        $page = $page ? $page : 1;
+
         return Book::with("author")->with("category")
-                    ->where("title","like","%$title%")
-                    ->where("abstract","like","%$abstract%")
-                    ->where("year","like","%$year%")
-                    ->whereHas('category', function($query) use ($category,$category_id) {
-                        if($category_id){
-                            $query->where('id', $category_id);
-                        }else{
-                            $query->where('name', 'like', "%$category%"); 
-                        }                                              
-                    })
-                    ->whereHas('author', function($query) use ($author) {
-                        $query->where('full_name', 'like', "%$author%");
-                    })
-                    ->latest()
-                    ->paginate(20, ['*'], 'page', $page);
+            ->where("title", "like", "%$title%")
+            ->where("abstract", "like", "%$abstract%")
+            ->where("year", "like", "%$year%")
+            ->whereHas('category', function ($query) use ($category, $category_id) {
+                if ($category_id) {
+                    $query->where('id', $category_id);
+                } else {
+                    $query->where('name', 'like', "%$category%");
                 }
+            })
+            ->whereHas('author', function ($query) use ($author) {
+                $query->where('full_name', 'like', "%$author%");
+            })
+            ->latest()
+            ->paginate(20, ['*'], 'page', $page);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return ["categories"=>Category::all(),"authors"=> Author::all()];
+        return ["categories" => Category::all(), "authors" => Author::all()];
     }
 
     /**
@@ -51,10 +51,11 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        $newBook = $request->only(['title','year','abstract',"author_id","category_id"]);
-        if( $request->has("cover_url")){
+        $newBook = $request->only(['title', 'year', 'abstract', "author_id", "category_id"]);
+        if ($request->has("cover_url")) {
             $newBook["cover_url"] = $request->cover_url;
-        }if( $request->has("available_copies")){
+        }
+        if ($request->has("available_copies")) {
             $newBook["available_copies"] = $request->available_copies;
         }
         try {
@@ -62,12 +63,12 @@ class BookController extends Controller
             if ($book) {
                 return ["message" => "Libro creato con successo"];
             } else {
-                return ["message" => "Errore durante la creazione del libro", "error"=>"Libro non presente o che cazzo ne so"];
+                return ["message" => "Errore durante la creazione del libro", "error" => "Libro non presente o che cazzo ne so"];
             }
         } catch (\Throwable $th) {
-            return ["message" => "Errore durante la creazione del libro: ", "error"=>$th];
-        }       
-        
+            return ["message" => "Errore durante la creazione del libro: ", "error" => $th];
+        }
+
     }
 
     /**
@@ -75,7 +76,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-       return $book->load("author")->load("category");
+        return $book->load("author")->load("category");
     }
 
     /**
@@ -83,7 +84,11 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return ["book"=>$book->load("author")->load("category"),  Category::orderBy("name")->get(),"authors"=> Author::orderBy("full_name")->get()];
+        return [
+            "book" => $book->load("author")->load("category"),
+            "categories" => Category::orderBy("name")->get(),
+            "authors" => Author::orderBy("full_name")->get()
+        ];
     }
 
     /**
@@ -101,9 +106,9 @@ class BookController extends Controller
     {
         try {
             $book->delete();
-            return ["message"=>"l'oggetto è stato eliminato con successo"];
+            return ["message" => "l'oggetto è stato eliminato con successo"];
         } catch (\Throwable $th) {
-            return ["message"=>"Si è verificato un errore", "error"=>$th];
+            return ["message" => "Si è verificato un errore", "error" => $th];
         }
     }
 }
