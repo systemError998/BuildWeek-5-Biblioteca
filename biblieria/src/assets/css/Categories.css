@@ -34,8 +34,8 @@ testoSide {
 
 
 .navigation ul li.active {
-  background: #010A26;;
-  color: white;
+  background: #010A26 !important;
+  color: white !important;
 }
 .navigation ul li:hover {
   background: #010A26;;
