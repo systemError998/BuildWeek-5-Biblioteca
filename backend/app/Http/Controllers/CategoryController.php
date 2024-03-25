@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
@@ -29,7 +30,18 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $newCategory=$request->only(["name"]);
+       
+        try {
+            $category=Categoria::create($newCategory);
+            if ($category) {
+                return ["message" => "Categoria creato con successo"];
+            } else {
+                return ["message" => "Errore durante la creazione della Categoria", "error"=>"Categoria non presente o che cazzo ne so"];
+            }
+        } catch (\Throwable $th) {
+            return ["message" => "Errore durante la creazione della Categoria: ", "error"=>$th];
+        }
     }
 
     /**

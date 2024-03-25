@@ -61,7 +61,7 @@ class BookController extends Controller
             if ($book) {
                 return ["message" => "Libro creato con successo"];
             } else {
-                return ["message" => "Errore durante la creazione del libro", "errore"=>"Libro non presente o che cazzo ne so"];
+                return ["message" => "Errore durante la creazione del libro", "error"=>"Libro non presente o che cazzo ne so"];
             }
         } catch (\Throwable $th) {
             return ["message" => "Errore durante la creazione del libro: ", "error"=>$th];
