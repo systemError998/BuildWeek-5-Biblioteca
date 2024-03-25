@@ -83,7 +83,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return ["book"=>$book->load("author")->load("category"), "categories"=>Category::orderBy("name")->all(),"authors"=> Author::orderBy("full_name")->all()];
+        return ["book"=>$book->load("author")->load("category"),  Category::orderBy("name")->get(),"authors"=> Author::orderBy("full_name")->get()];
     }
 
     /**
