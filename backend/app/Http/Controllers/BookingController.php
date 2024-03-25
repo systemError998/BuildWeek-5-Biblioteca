@@ -21,7 +21,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        return ;
     }
 
     /**
@@ -61,6 +61,7 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        $booking->delete();
+        return "L'oggetto è stato eliminato con successo";
     }
 }

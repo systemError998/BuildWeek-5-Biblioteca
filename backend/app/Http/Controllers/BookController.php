@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -37,7 +39,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return ["categories"=>Category::all(),"authors"=> Author::all()];
     }
 
     /**
@@ -45,7 +47,27 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        //
+        $newBook = $request->only(['title','year','abstract',"author_id","category_id"]);
+        if( $request->has("cover_url")){
+            $newBook["cover_url"] = $request->cover_url;
+        }if( $request->has("total_copies")){
+            $newBook["total_copies"] = $request->total_copies;
+
+        }if( $request->has("available_copies")){
+            $newBook["available_copies"] = $request->available_copies;
+        }
+        try {
+            $book = Book::create($newBook);
+            if ($book) {
+                return ["message" => "Libro creato con successo"];
+            } else {
+                return ["message" => "Errore durante la creazione del libro", "error"=>"Libro non presente o che cazzo ne so"];
+            }
+        } catch (\Throwable $th) {
+            return ["message" => "Errore durante la creazione del libro: ", "error"=>$th];
+        }
+        
+        
     }
 
     /**
