@@ -13,7 +13,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::with("bookings")->with("favourites")->get();
+        // return User::with("bookings")->with("favourites")->get();
+        return User::with("bookings")->get();
+
     }
 
 
@@ -39,6 +41,10 @@ class UserController extends Controller
 
 
         return response()->noContent();
+    }
+
+    public function destroy(User $user){
+        $user->delete();
     }
 
 }
