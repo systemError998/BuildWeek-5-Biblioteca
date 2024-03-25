@@ -11,7 +11,7 @@ export default function ComponentePaginazioneHome() {
   const pagineTotali = useSelector(state => state.libri.pagineTotali);
   const paginaCorrente = useSelector(state => state.libri.paginaCorrente);
   const categoriaSelezionata = useSelector(state => state.categorie.categoriaSelezionata);
-  const mostraPagine = 5;
+  const mostraPagine = 7;
   const handlePageClick = (pagina) => {
     window.scrollTo(0, 0);
     dispatch(getAllBooks({category: categoriaSelezionata, page: pagina}));

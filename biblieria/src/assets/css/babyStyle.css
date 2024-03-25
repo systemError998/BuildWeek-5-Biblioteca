@@ -22,6 +22,10 @@ body {
     height: 30rem;
 }
 
+.pagination li a{
+    color: #010A26 !important;
+}
+
 /* CAROSELLO DEL PORCO DIO */
 
 /* CAROSELLO FACK */

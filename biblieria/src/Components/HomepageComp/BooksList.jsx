@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllBooks } from '../../slice/bookSlice';
 import CardLibro from '../CardLibro';
+import ComponentePaginazioneHome from './ComponentePaginazioneHome';
 
 export default function BooksList() {
 
   const dispatch = useDispatch()
 
   const books = useSelector( state => state.libri.listaLibri)
+  const loading = useSelector( state => state.libri.loading)
   
 
   useEffect(() => {
@@ -19,10 +21,19 @@ export default function BooksList() {
   return (
       <>
         <div className="container bg-white rounded-md">
+          
+          
             <div className="flex flex-wrap justify-center gap-x-10 gap-y-5 mt-4 pt-3">
+            {loading && 
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>}
                 { books.map((book, index) => (
                         <CardLibro key={index} libro={book} />
                     ))}
+            </div>
+            <div className='d-flex justify-content-center py-3'>
+              <ComponentePaginazioneHome/>
             </div>
         </div>
       </>
