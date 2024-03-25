@@ -17,7 +17,6 @@ return new class extends Migration
            
             $table->string("title");
             $table->year('year');
-            $table->integer("total_copies")->default(1);
             $table->integer("available_copies")->default(1);
             $table->string("cover_url")
             ->default("https://i.pinimg.com/736x/b5/d7/ed/b5d7edaf6d61091281f348fb1e66efc8.jpg");

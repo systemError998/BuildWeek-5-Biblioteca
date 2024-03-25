@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->year('year');
-            $table->string('country');
-            $table->text("biography");
-            $table->string("profile_img")->default("https://theworldmaker.com/wp-content/uploads/2022/08/Placeholder-Team-Image.jpg");
+            $table->foreignId("user_id");
+            $table->foreign("user_id")->on("users")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreignId("book_id");
+            $table->foreign("book_id")->on("books")->references("id")->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('favorites');
     }
 };
