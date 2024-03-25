@@ -43,7 +43,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        return $author->load("categories")->load("books");
+        return $author->load("categories.authors")->load("books.category");
     }
 
     /**
