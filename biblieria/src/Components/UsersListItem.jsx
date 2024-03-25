@@ -13,24 +13,35 @@ export function UsersListItem({ user, getAllUsers }) {
 
   const deleteUser = (id) => {
     setLoading(true);
-    axios.delete("/admin/user/" + id).then(() => getAllUsers()).then(() => setLoading(false));
+    axios
+      .delete("/admin/user/" + id)
+      .then(() => getAllUsers())
+      .then(() => setLoading(false));
   };
 
   return (
-    <ListItem>
-      <ListItemPrefix>
-        <Avatar variant="circular" alt={user.name} src={user.profile_img} />
-      </ListItemPrefix>
-      <div>
-        <Typography variant="h6" color="blue-gray">
-          {user.name}
-        </Typography>
-        <Typography variant="small" color="gray" className="font-normal">
-          {user.email}
-        </Typography>
+    <ListItem className="flex justify-between">
+      <div className="flex">
+        <ListItemPrefix>
+          <Avatar variant="circular" alt={user.name} src={user.profile_img} />
+        </ListItemPrefix>
+        <div>
+          <Typography variant="h6" color="blue-gray">
+            {user.name}
+          </Typography>
+          <Typography variant="small" color="gray" className="font-normal">
+            {user.email}
+          </Typography>
+        </div>
       </div>
-      <Button disabled={loading} className="float-end" onClick={() => deleteUser(user.id)}>
-        {!loading ? 'X' : 'o'}
+      <Button
+        disabled={loading}
+        className="btn btn-danger"
+        onClick={() => {
+          window.confirm(`Are you sure you want to delete ${user.name} from users?`)
+          deleteUser(user.id)}}
+      >
+        {!loading ? "X" : "o"}
       </Button>
     </ListItem>
   );
