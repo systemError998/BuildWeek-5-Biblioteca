@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             BookSeeder::class,
             BookingSeeder::class,
+            FavoritesSeeder::class
         ]);
     }
 }
