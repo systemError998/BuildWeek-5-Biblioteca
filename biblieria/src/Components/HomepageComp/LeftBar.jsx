@@ -13,7 +13,7 @@ export default function LeftBar() {
 
     const dispatch = useDispatch()
 
-    const category= useSelector(state=>state.categorie.listaCategorie)
+    const category = useSelector(state=>state.categorie.listaCategorie)
     const categoriaSelezionata = useSelector(state => state.libri.categoriaSelezionata)
 
     useEffect(()=>{
@@ -26,8 +26,8 @@ export default function LeftBar() {
 
 return (
     <>
-        <div className="navigation mt-4 rounded-md">
-            <p className='uppercase font-sans font-semibold border-b-2 pb-2'> Categorie </p>
+        <div className="navigation mt-4 rounded-md text-center">
+            <p className='uppercase font-sans font-semibold'> Categorie </p>
             <ul className="uppercase font-sans font-semibold text-center">
             <li className={"list text-center " + (!categoriaSelezionata ? 'active' : '')} >
                 <button className="flex gap-1 no-underline uppercase "  onClick={() => { dispatch(getAllBooks()); dispatch(selezionaCategoria(null)) }}>

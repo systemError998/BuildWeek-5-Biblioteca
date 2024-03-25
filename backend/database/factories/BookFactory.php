@@ -19,11 +19,12 @@ class BookFactory extends Factory
     public function definition(): array
     {
         $copieDisponibili = rand(1,10);
-     
+
         return [
            'title'=>fake()->text(20),
            'year'=>fake()->year(),
            'available_copies'=>$copieDisponibili,
+           'cover_url' => "https://source.unsplash.com/random/".fake()->numberBetween(1,200),
            'author_id'=>Author::get()->random()->id,
            'category_id'=>Category::get()->random()->id,
            "abstract"=>fake()->text(200),
