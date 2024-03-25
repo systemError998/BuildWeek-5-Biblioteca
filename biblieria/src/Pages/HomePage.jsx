@@ -3,7 +3,7 @@ import '../assets/css/prova.css'
 import React, { useEffect, useState } from 'react';
 import axios from "../api/axios";
 import { Container, Col, Row,Button } from "react-bootstrap";
-import CategoriesList from '../Components/HomepageComp/CategoriesList'
+import LeftBar from '../Components/HomepageComp/LeftBar'
 import BooksList from '../Components/HomepageComp/BooksList'
 import LoadingHomeComponent from '../Components/HomepageComp/LoadingHomeComponent'
 import Pagination from '../Components/Pagination'
@@ -71,7 +71,7 @@ export default function HomePage() {
         <Row className='px-1'>
             <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
               {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
-              <CategoriesList />
+              <LeftBar />
             </Col>
             <Col md={{ span: 7 }} lg={{ span: 8 }}>
               {/* Componenti Main*/}
