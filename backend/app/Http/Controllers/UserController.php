@@ -13,7 +13,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::with("bookings")->with("favourites")->get();
+        // return User::with("bookings")->with("favourites")->get();
+        return User::with("bookings")->get();
+
     }
 
 
