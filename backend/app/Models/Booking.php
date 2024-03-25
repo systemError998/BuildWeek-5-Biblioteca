@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Booking extends Model
 {
     use HasFactory;
+    protected $fillable=['user_id','book_id',"is_active","extended",'expiring_date','starting_date'];
     public function book () : BelongsTo  {
         return $this->belongsTo(Book::class);
     }
