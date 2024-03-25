@@ -17,8 +17,7 @@ export default function BooksList() {
   console.log(books);
 
   return (
-    <>
-        
+      <>
         <div className="container bg-white rounded-md">
             <div className="flex flex-wrap justify-center gap-x-10 gap-y-5 mt-4 pt-3">
                 { books.map((book, index) => (
@@ -26,7 +25,6 @@ export default function BooksList() {
                     ))}
             </div>
         </div>
-
-        </>
+      </>
   )
 }
