@@ -12,7 +12,6 @@ import { BookDetail } from "./Pages/BookDetail";
 import { AuthorPage } from "./Pages/AuthorPage";
 import Scrollata from "./Components/Scrollata";
 import { AuthProvider } from "./context/AuthContext.jsx";
-
 import AuthLayout from "./layouts/AuthLayout.jsx";
 import GuestLayout from "./layouts/GuestLayout.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
@@ -24,8 +23,8 @@ function App() {
         <MyNavbar />
         <Scrollata />
         <Routes>
+        <Route path="/" element={<HomePage />} />
           <Route element={<AuthLayout />}>
-            <Route path="/" element={<HomePage />} />
             <Route path="/book/:id" element={<BookDetail />} />
             <Route path="/author/:id" element={<AuthorPage />} />
             <Route path="/profile" element={<ProfilePage />} />
@@ -33,12 +32,10 @@ function App() {
               {/* rotte admin */}
             </Route>
           </Route>
-
           <Route element={<GuestLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
-
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>

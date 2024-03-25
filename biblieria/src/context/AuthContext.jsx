@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
@@ -54,15 +54,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    console.log(user);
+  }, [user])
 
-  const logout = async() => {
+  const logout = () => {
     axios.post('/logout').then(() => {
-        navigate("/");
-        setUser(null);
+      setUser(null);
+
     })
   }
 
-  
+
   return (
     <AuthContext.Provider value={{ user, errors, getUser, login, register, logout }}>
       {children}

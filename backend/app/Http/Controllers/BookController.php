@@ -65,8 +65,7 @@ class BookController extends Controller
             }
         } catch (\Throwable $th) {
             return ["message" => "Errore durante la creazione del libro: ", "error"=>$th];
-        }
-        
+        }       
         
     }
 
