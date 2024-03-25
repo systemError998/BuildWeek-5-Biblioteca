@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\favorites;
+use App\Models\Favorites;
 use Illuminate\Auth\Access\Response;
 
 class FavoritesPolicy
@@ -19,7 +19,7 @@ class FavoritesPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, favorites $favorites): bool
+    public function view(User $user, Favorites $favorites): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class FavoritesPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, favorites $favorites): bool
+    public function update(User $user, Favorites $favorites): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class FavoritesPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, favorites $favorites): bool
+    public function delete(User $user, Favorites $favorites): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class FavoritesPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, favorites $favorites): bool
+    public function restore(User $user, Favorites $favorites): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class FavoritesPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, favorites $favorites): bool
+    public function forceDelete(User $user, Favorites $favorites): bool
     {
         //
     }

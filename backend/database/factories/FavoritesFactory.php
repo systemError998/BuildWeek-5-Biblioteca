@@ -3,12 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Book;
-use App\Models\favorites;
+use App\Models\Favorites;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\favorites>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Favorites>
  */
 class FavoritesFactory extends Factory
 {
@@ -20,7 +20,7 @@ class FavoritesFactory extends Factory
 
     private function getRandomBookId() {
         // Ottieni tutti gli ID dei libri esistenti
-        $existingBookIds = favorites::pluck('book_id')->toArray();
+        $existingBookIds = Favorites::pluck('book_id')->toArray();
     
         // Ottieni un ID di libro casuale che non è già stato utilizzato
         do {

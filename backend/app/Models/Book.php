@@ -23,6 +23,6 @@ class Book extends Model
     }
 
     public function favorites () : HasMany  {
-        return $this->hasMany(favorites::class); 
+        return $this->hasMany(Favorites::class); 
     }
 }

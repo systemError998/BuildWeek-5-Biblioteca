@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\favorites;
-use App\Http\Requests\StorefavoritesRequest;
-use App\Http\Requests\UpdatefavoritesRequest;
+use App\Models\Favorites;
+use App\Http\Requests\StoreFavoritesRequest;
+use App\Http\Requests\UpdateFavoritesRequest;
 use Illuminate\Support\Facades\Auth;
 
 class FavoritesController extends Controller
@@ -14,8 +14,8 @@ class FavoritesController extends Controller
      */
     public function index()
     {
-       return favorites::where("user_id", Auth::user()->id)->get();
-        // return favorites::get();
+       return Favorites::where("user_id", Auth::user()->id)->get();
+        
     }
 
     /**
@@ -29,11 +29,11 @@ class FavoritesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorefavoritesRequest $request)
+    public function store(StoreFavoritesRequest $request)
     {
         $newFav = $request->only(["book_id"]);
         $newFav["user_id"]= Auth::user()->id;
-        $fav = favorites::create($newFav);
+        $fav = Favorites::create($newFav);
         if($fav){
            return "Libro aggiunto ai preferiti";
         } else {
@@ -44,7 +44,7 @@ class FavoritesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(favorites $favorites)
+    public function show(Favorites $favorites)
     {
         //
     }
@@ -52,7 +52,7 @@ class FavoritesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(favorites $favorites)
+    public function edit(Favorites $favorites)
     {
         //
     }
@@ -60,7 +60,7 @@ class FavoritesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatefavoritesRequest $request, favorites $favorites)
+    public function update(UpdateFavoritesRequest $request, Favorites $favorites)
     {
         //
     }
@@ -68,7 +68,7 @@ class FavoritesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(favorites $favorites)
+    public function destroy(Favorites $favorites)
     {
         $delteFav = $favorites->delete();
         return $delteFav ? "fav eliminato" : "fav non trovato";

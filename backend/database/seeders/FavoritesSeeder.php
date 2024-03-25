@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\favorites;
+use App\Models\Favorites;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,6 +13,6 @@ class FavoritesSeeder extends Seeder
      */
     public function run(): void
     {
-        favorites::factory(200)->create();
+        Favorites::factory(200)->create();
     }
 }

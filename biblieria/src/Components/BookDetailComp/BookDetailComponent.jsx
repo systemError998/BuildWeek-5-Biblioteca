@@ -5,6 +5,7 @@ import { Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import useAuthContext from "../../context/AuthContext";
 import { createBooking } from '../../slice/bookingSlice'
+import ModBook from '../ModBook'
 
 
 export default function BookDetailComponent() {
@@ -37,8 +38,7 @@ export default function BookDetailComponent() {
                         book.author ? <> 
                         <div className="container bg-dark rounded-2 text-light p-5">
                             <div>
-                               {user?.is_admin && <button className='btn btn-light w-75'>Elimina libro</button>
-}
+                               {user?.is_admin && <div><button className='btn btn-light w-75'>Elimina libro</button> <ModBook/></div> }
                             </div>
                             <div className="row">
                                 <div className="col">
