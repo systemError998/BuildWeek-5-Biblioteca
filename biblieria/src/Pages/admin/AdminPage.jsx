@@ -1,16 +1,18 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
-import { AddUserForm } from '../../Components/AdminPageComp/AddUserForm'
-import { Link } from 'react-router-dom'
-import AllUsersAdmin from '../../Components/AdminPageComp/AllUsersAdmin'
+import React from "react";
+import { Container } from "react-bootstrap";
+import { AddUserForm } from "../../Components/AdminPageComp/AddUserForm";
+import { Link } from "react-router-dom";
+import AllUsersAdmin from "../../Components/AdminPageComp/AllUsersAdmin";
 
 export default function AdminPage() {
   return (
     <Container>
-        <Link to={'/admin/createUser'} className='bg-white  mt-5'>
+      <div  className=" my-4">
+        <Link to={"/admin/createUser"} className=" btn btn-light bg-white ">
           Add User
         </Link>
-        <AllUsersAdmin />
+      </div>
+      <AllUsersAdmin />
     </Container>
-  )
+  );
 }

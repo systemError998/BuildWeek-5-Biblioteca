@@ -1,8 +1,8 @@
-
-import "../assets/css/babyStyle.css"
-import biblio from "../assets/img/biblio.jpg"
+import "../assets/css/babyStyle.css";
+import biblio from "../assets/img/biblio.jpg";
 import React, { useState } from "react";
 import useAuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -69,16 +69,13 @@ export default function Login() {
                   </div>
                 )}
               </div>
-              <div className="mb-3 form-check">
-                <input
-                  type="checkbox"
-                  name="check"
-                  className="form-check-input"
-                  id="exampleCheck1"
-                />
-                <label className="form-check-label" for="exampleCheck1">
-                  Check me out
-                </label>
+              <div className="my-4 form-check">
+                <Link
+                  to={"/forgot-password"}
+                  className="text-decoration-none text-white"
+                >
+                  Forgot your password?
+                </Link>
               </div>
               <button type="submit" className="btn btn-secondary">
                 Login

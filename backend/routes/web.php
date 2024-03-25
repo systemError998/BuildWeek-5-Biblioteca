@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\UserController;
@@ -34,3 +36,6 @@ Route::get('/dashboard', function(){
 })->middleware(['auth', 'verified']);
 
 Route::resource("/api/booking",BookingController::class)->middleware(['auth', 'verified']);
+Route::resource("/api/category",CategoryController::class);
+Route::resource("/api/booking",BookingController::class); 
+Route::resource("/api/author",AuthorController::class);
