@@ -6,23 +6,23 @@ import { Carousel } from "@material-tailwind/react";
 export default function FakeCarousel() {
   return (
     <div className=" h-96 justify-center">
-    <Carousel className="rounded-sm h-96 w-full justify-center"> 
-      <img
-        src="https://cdn.ecommercedns.uk/files/4/211944/6/23137046/2000x800-reynolds.jpg"
-        alt="image 1"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://wefoundadventure.com/wp-content/uploads/2016/07/P7270396-2000x800.jpg"
-        alt="image 2"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://assets-au-scc.kc-usercontent.com/330b87ea-148b-3ecf-9857-698f2086fe8d/ea08766e-a930-44c5-8cfc-2a12e5da5514/services_print_2000.jpg"
-        alt="image 3"
-        className="h-full w-full object-cover"
-      />
-    </Carousel>
+    <Carousel transition={{ duration: 2 }} className="rounded-sm h-96 w-full">
+        <img
+          src="https://video-images.vice.com/articles/5d44c9622980b0000824a7e3/lede/1564789576071-GettyImages-949118068.jpeg?crop=1xw:0.599250936329588xh;center,center"
+          alt="image 1"
+          className="h-full w-full object-cover"
+        />
+        <img
+          src="https://cecibooks.com/wp-content/uploads/2021/08/bookisyourmessage-2000x800.jpeg"
+          alt="image 2"
+          className="h-full w-full object-cover"
+        />
+        <img
+          src="https://blog.history.ac.uk/files/2018/06/books-2000x800.jpg"
+          alt="image 3"
+          className="h-full w-full object-cover"
+        />
+      </Carousel>
     </div>
   );
 }
