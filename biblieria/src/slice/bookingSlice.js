@@ -14,8 +14,19 @@ const initialState={
 
 export const getBookings =
     createAsyncThunk("Bookings/fetch", async()=>{
-       return axios.get(endPointBooking).then(response=> {console.log(response);return response.data}).catch(error=>console.log(error));
+    return axios.get(endPointBooking).then(response=> {console.log(response);return response.data}).catch(error=>console.log(error));
     })
+
+export const createBooking =
+    createAsyncThunk("Bookings/fetch", async (bookId, { dispatch }) => {
+    
+    return axios.post(endPointBooking, {
+                        book_id: bookId
+                    })
+    .then(response=> console.log(response))
+    .catch(error=>console.log(error));
+})
+
 
 
 export const booking_slice = createSlice(

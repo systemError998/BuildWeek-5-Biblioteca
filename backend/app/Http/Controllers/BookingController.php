@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -29,15 +30,25 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        $newBooking = $request->only(["user_id", "book_id"]);
+        
         try {
+            $this->authorize('create', [Booking::class]);
+            $newBooking = $request->only(["book_id"]);
+            $newBooking['user_id']=Auth::user()->id;
             $booking = Booking::create($newBooking);
             if ($booking) {
                 return ["message" => "Prenotazione effettuata con successo"];
             }
             return ["message" => "Si è verificato un errore", "error" => "Problemi"];
-        } catch (\Throwable $th) {
-            return ["message" => "Si è verificato un errore", "error" => $th];
+        }catch (\Exception $e) {
+
+            if ($e instanceof AuthorizationException) {
+                return ['message' => "You're not allowed to create activities!"];
+
+            } else {
+                return ['message' => "Error while creating Booking: " . $e->getMessage()];
+               
+            }
         }
     }
 
