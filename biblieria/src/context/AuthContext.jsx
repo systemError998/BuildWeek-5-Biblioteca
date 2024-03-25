@@ -54,6 +54,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const newUser = async ({ ...data }) => {
+    setErrors([]);
+    await csrf();
+    try {
+      await axios.post("/admin/user", data);
+      await getUser();
+      navigate("/");
+    } catch (err) {
+      if (err.response && err.response.status === 422) {
+        setErrors(err.response.data.errors);
+      }
+    }
+  };
+
   useEffect(() => {
     console.log(user);
   }, [user])
@@ -67,7 +81,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider value={{ user, errors, getUser, login, register, logout }}>
+    <AuthContext.Provider value={{ user, errors, getUser, login, register, logout, newUser }}>
       {children}
     </AuthContext.Provider>
   );

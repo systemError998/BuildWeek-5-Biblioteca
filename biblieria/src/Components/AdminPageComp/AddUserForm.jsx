@@ -9,16 +9,16 @@ import { useState } from "react";
 import useAuthContext from "../../context/AuthContext";
 
 export function AddUserForm() {
-  const { register } = useAuthContext();
+  const { newUser, errors } = useAuthContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const [email_verified_at, setEmailVerifiedAt] = useState(new Date());
   const [is_admin, setIsAdmin] = useState(false);
-  const [profile_img, setProfileImage] = useState(
-    "https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
-  );
+  //   const [profile_img, setProfileImage] = useState(
+  //     "https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
+  //   );
 
   const handleCheckboxChange = (event) => {
     setIsAdmin(event.target.checked);
@@ -26,13 +26,13 @@ export function AddUserForm() {
 
   const handleAddNewUser = async (event) => {
     event.preventDefault();
-    register({
+    newUser({
       name,
       email,
       password,
       password_confirmation,
       is_admin,
-      profile_img
+      //   profile_img
     });
   };
 
@@ -62,6 +62,9 @@ export function AddUserForm() {
               className: "before:content-none after:content-none",
             }}
           />
+          {errors.name && (
+            <div className="form-text text-danger">{errors.name}</div>
+          )}
           <Typography variant="h6" color="blue-gray" className="-mb-3">
             Email
           </Typography>
@@ -75,6 +78,9 @@ export function AddUserForm() {
               className: "before:content-none after:content-none",
             }}
           />
+          {errors.email && (
+            <div className="form-text text-danger">{errors.email}</div>
+          )}
           <Typography variant="h6" color="blue-gray" className="-mb-3">
             Password
           </Typography>
@@ -89,7 +95,9 @@ export function AddUserForm() {
               className: "before:content-none after:content-none",
             }}
           />
-
+          {errors.password && (
+            <div className="form-text text-danger">{errors.password}</div>
+          )}
           <Typography variant="h6" color="blue-gray" className="-mb-3">
             Password Confirmation
           </Typography>
@@ -107,7 +115,10 @@ export function AddUserForm() {
         </div>
         <Checkbox
           checked={is_admin}
-          onChange={handleCheckboxChange}
+          onChange={(e) => {
+            console.log(is_admin);
+            handleCheckboxChange(e);
+          }}
           label={
             <Typography
               variant="small"
