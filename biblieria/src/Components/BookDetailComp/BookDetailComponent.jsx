@@ -2,12 +2,19 @@ import React, { useEffect, useState } from 'react'
 import axios from '../../api/axios'
 import { useParams } from 'react-router-dom'
 import { Image } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import useAuthContext from "../../context/AuthContext";
+import { createBooking } from '../../slice/bookingSlice'
 
 
 export default function BookDetailComponent() {
+    const {user} = useAuthContext();
+    console.log(user)
+    
     let {id}= useParams()
     console.log(id)
     let [book, setBook] = useState({})
+    let dispatch= useDispatch()
    
 
     useEffect(() => {
@@ -51,7 +58,9 @@ export default function BookDetailComponent() {
                             </div>
                             <div className="row text-center">
                                 <div className="col">
-                                    <button className='btn btn-light w-75'>PRENOTA</button>
+                                    <button className='btn btn-light w-75' onClick={()=> dispatch(createBooking(book.id))}>PRENOTA</button>
+                                    
+
                                 </div>
                             </div>
                         </div>

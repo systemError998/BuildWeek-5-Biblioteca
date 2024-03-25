@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class BookingPolicy
 {
@@ -29,7 +30,11 @@ class BookingPolicy
      */
     public function create(User $user): bool
     {
-        //
+        if($user) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
