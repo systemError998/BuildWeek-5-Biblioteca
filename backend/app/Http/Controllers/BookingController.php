@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Booking;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
@@ -14,7 +15,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return Booking::with("book")->with("user")->where("user_id","=",Auth::user()->id)->orderBy("is_active", "desc")->orderBy("expiring_date", "asc")->get();
+        return Booking::with("book")->with("user")->where("user_id", "=", Auth::user()->id)->orderBy("is_active", "desc")->orderBy("expiring_date", "asc")->get();
     }
 
     /**
@@ -30,24 +31,27 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        
+
         try {
             $this->authorize('create', [Booking::class]);
             $newBooking = $request->only(["book_id"]);
-            $newBooking['user_id']=Auth::user()->id;
+            $newBooking['user_id'] = Auth::user()->id;
             $booking = Booking::create($newBooking);
             if ($booking) {
+                $book = Book::find($booking->book_id);
+                $book->update([
+                    "available_copies" => $book->available_copies - 1]);
                 return ["message" => "Prenotazione effettuata con successo"];
             }
             return ["message" => "Si è verificato un errore", "error" => "Problemi"];
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
 
             if ($e instanceof AuthorizationException) {
                 return ['message' => "You're not allowed to create activities!"];
 
             } else {
                 return ['message' => "Error while creating Booking: " . $e->getMessage()];
-               
+
             }
         }
     }
