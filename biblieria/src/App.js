@@ -23,7 +23,7 @@ function App() {
         <MyNavbar />
         <Scrollata />
         <Routes>
-        <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route element={<AuthLayout />}>
             <Route path="/book/:id" element={<BookDetail />} />
             <Route path="/author/:id" element={<AuthorPage />} />
@@ -36,6 +36,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Route>
+          
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>
