@@ -67,6 +67,11 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        try {
+            $author->delete();
+            return ["message"=>"L'oggetto è stato eliminato con successo"];
+        } catch (\Throwable $th) {
+            return ["message"=>"Si è verificato un errore", "error"=>$th];
+        }
     }
 }

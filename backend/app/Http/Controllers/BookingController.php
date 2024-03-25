@@ -29,7 +29,13 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        //
+        $newBooking = $request->only(["user_id","book_id"]);
+        try {
+           $Booking = Booking::create($newBooking);
+            return ["message"=>"Prenotazione effettuata con successo"];
+        } catch (\Throwable $th) {
+            return ["message"=>"Si è verificato un errore", "error"=>$th];
+        }
     }
 
     /**
@@ -61,7 +67,11 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        $booking->delete();
-        return "L'oggetto è stato eliminato con successo";
+        try {
+            $booking->delete();
+            return ["message"=>"L'oggetto è stato eliminato con successo"];
+        } catch (\Throwable $th) {
+            return ["message"=>"Si è verificato un errore", "error"=>$th];
+        }
     }
 }
