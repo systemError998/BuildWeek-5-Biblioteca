@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +23,5 @@ Route::resource("/api/book",BookController::class)->middleware(["auth","verified
 require __DIR__.'/auth.php';
 
 Route::get('/dashboard', function(){
-    return 'ciao';
+    return Auth::user();
 });

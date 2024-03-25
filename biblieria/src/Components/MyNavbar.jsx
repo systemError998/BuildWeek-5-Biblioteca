@@ -19,8 +19,7 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-  const navigate = useNavigate();
-  const { user, logout } = useAuthContext;
+  const { user, logout } = useAuthContext();
 
   const handleLogout = async (e) => {
     e.preventDefault();
