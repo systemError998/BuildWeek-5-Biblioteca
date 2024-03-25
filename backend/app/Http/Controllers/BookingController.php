@@ -13,7 +13,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-       return Booking::with("book")->with("user")->orderBy("is_active","desc")->orderBy("expiring_date","asc")->get();
+        return Booking::with("book")->with("user")->orderBy("is_active", "desc")->orderBy("expiring_date", "asc")->get();
     }
 
     /**
@@ -21,7 +21,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return ;
+        return;
     }
 
     /**
@@ -29,7 +29,16 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        //
+        $newBooking = $request->only(["user_id", "book_id"]);
+        try {
+            $booking = Booking::create($newBooking);
+            if ($booking) {
+                return ["message" => "Prenotazione effettuata con successo"];
+            }
+            return ["message" => "Si è verificato un errore", "error" => "Problemi"];
+        } catch (\Throwable $th) {
+            return ["message" => "Si è verificato un errore", "error" => $th];
+        }
     }
 
     /**
@@ -37,7 +46,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-       return $booking->load("user")->load("book");
+        return $booking->load("user")->load("book");
     }
 
     /**
@@ -61,7 +70,11 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        $booking->delete();
-        return "L'oggetto è stato eliminato con successo";
+        try {
+            $booking->delete();
+            return ["message" => "L'oggetto è stato eliminato con successo"];
+        } catch (\Throwable $th) {
+            return ["message" => "Si è verificato un errore", "error" => $th];
+        }
     }
 }

@@ -16,11 +16,12 @@ class AuthorFactory extends Factory
      */
     public function definition(): array
     {
+        $year = rand(1950, 1990);
         return [
             'full_name'=>fake()->name(),
             'country'=>fake()->country(),
-            'year'=>fake()->year($max = '1980'),
-            "biografy"=>fake()->text(200),
+            'year'=>fake()->year,
+            "biography"=>fake()->text(200),
         ];
     }
 }

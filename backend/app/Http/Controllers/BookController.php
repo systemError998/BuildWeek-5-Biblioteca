@@ -50,9 +50,6 @@ class BookController extends Controller
         $newBook = $request->only(['title','year','abstract',"author_id","category_id"]);
         if( $request->has("cover_url")){
             $newBook["cover_url"] = $request->cover_url;
-        }if( $request->has("total_copies")){
-            $newBook["total_copies"] = $request->total_copies;
-
         }if( $request->has("available_copies")){
             $newBook["available_copies"] = $request->available_copies;
         }
@@ -82,7 +79,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return $book->load("author")->load("category");
     }
 
     /**
@@ -98,6 +95,11 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        try {
+            $book->delete();
+            return ["message"=>"l'oggetto è stato eliminato con successo"];
+        } catch (\Throwable $th) {
+            return ["message"=>"Si è verificato un errore", "error"=>$th];
+        }
     }
 }

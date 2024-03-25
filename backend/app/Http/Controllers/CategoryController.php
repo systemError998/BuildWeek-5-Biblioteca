@@ -31,7 +31,6 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $newCategory=$request->only(["name"]);
-       
         try {
             $category=Categoria::create($newCategory);
             if ($category) {
@@ -75,7 +74,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-
+        try {
+            $category->delete();
+            return ["message"=>"L'oggetto è stato eliminato con successo"];
+        } catch (\Throwable $th) {
+            return ["message"=>"Si è verificato un errore", "error"=>$th];
+        }
     }
 }

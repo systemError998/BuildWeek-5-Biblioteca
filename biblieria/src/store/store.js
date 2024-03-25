@@ -5,6 +5,7 @@ import AuthorReducer from "../slice/authorSlice";
 import categoriReducer from "../slice/categorySlice";
 import bookingsReducer from "../slice/bookingSlice";
 import bookReducer from "../slice/bookSlice";
+import preferitiReducer from '../slice/preferitiSlice'
 import {
     persistStore, persistReducer, FLUSH,
     REHYDRATE,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
     categorie: categoriReducer,
     bookings: bookingsReducer,
     libri: bookReducer,
+    preferiti:preferitiReducer
 });
 
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
