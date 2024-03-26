@@ -43,7 +43,7 @@ export default function MyFavorites() {
                         preferiti && preferiti.map((preferito, index) => (
                             <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800'>
                                 <div className='col-6 w-36'>
-                                    <img className='h-36' src={preferito.book.cover_url} alt="" />
+                                    <img className='w-32 h-40' src={preferito.book.cover_url} alt="" />
                                 </div>
                                 <div className='col-6 p-0 pt-1 pl-0'>
                                     <p className='text-xs mb-3'>{preferito.book.title}</p>
