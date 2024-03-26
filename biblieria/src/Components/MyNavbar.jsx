@@ -50,7 +50,7 @@ export default function Example() {
     if (event.target.value.trim() == "") {
       if (location.pathname === "/") {
         dispatch(getAllBooks());
-      } else if (location.pathname === "/authors-list/") {
+      } else if (location.pathname === "/author-list/") {
         dispatch(getAuthors());
       }
     }
@@ -148,8 +148,7 @@ export default function Example() {
               {/* Barra di ricerca */}
               <div className="hidden sm:block sm:ml-6 lg:w-96 md:w-44">
                 <div className="flex">
-                  <form onSubmit={()=>{
-                    cerca()}}>
+                  <form onSubmit={cerca}>
                   <input
                   onChange={handleInputChange}
                     type="text"
