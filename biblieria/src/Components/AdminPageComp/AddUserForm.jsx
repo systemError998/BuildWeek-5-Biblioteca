@@ -39,7 +39,7 @@ export function AddUserForm() {
   };
 
   return (
-    <Card color="white" shadow={false} className="text-center py-4 mt-5">
+    <Card color="white" shadow={false} className="text-center py-4 mt-20 w-50 mx-auto">
       <Typography variant="h4" color="blue-gray">
         New User
       </Typography>

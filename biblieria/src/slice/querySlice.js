@@ -7,8 +7,10 @@ const initialState = {
     title: "",
     year: "",
     author: "",
-    categoriaSelezionata: "",
-    message: ""
+    category: "",
+    page:1,
+    message: "",
+    ricerca:true
 }
 
 //primo parametro nome azione/ oprerazione che vuoi eseguire fetch, parametro 2 operazione async

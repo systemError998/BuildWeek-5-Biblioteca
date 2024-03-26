@@ -22,7 +22,7 @@ import { Image } from "react-bootstrap";
 import Logo from '../assets/img/logo.png'
 import { getAuthors } from "../slice/authorSlice";
 import { useSelector,useDispatch  } from 'react-redux';
-import { getAllBooks } from "../slice/bookSlice";
+import { getAllBooks, selezionaCategoria } from "../slice/bookSlice";
 
 //VOCI NAVBAR
 const navigation = [
@@ -41,10 +41,7 @@ export default function Example() {
   const dispatch = useDispatch()
   const location = useLocation();
   const [query, setQuery] = useState("");
-  const [title, setTitle] = useState("");
-  const [abstratc, setAbstratc] = useState("");
-  const [author, setAuthor] = useState("");
-  const [year, setYear] = useState("");
+  const advancedQuery = useSelector(state=>state.query)
   const [categoriaRicerca, setCategoriaRicerca] = useState(null);
   const categoriaSelezionata = useSelector(state=>state.libri.categoriaSelezionata)
 
@@ -52,12 +49,21 @@ export default function Example() {
     setQuery(event.target.value.trim());
     if (event.target.value.trim() == "") {
       if (location.pathname === "/") {
-        dispatch(getAllBooks({category: categoriaSelezionata}));
-      } else if (location.pathname === "/authors-list/") {
+        dispatch(getAllBooks());
+      } else if (location.pathname === "/author-list/") {
         dispatch(getAuthors());
       }
     }
   };
+  function cerca(event) {
+    event.preventDefault();
+    if (location.pathname === "/") { 
+      dispatch(selezionaCategoria(categoriaRicerca));
+      dispatch(getAllBooks({title:query}));     
+    }else if (location.pathname === "/authors-list/"){
+      dispatch(getAuthors({author:query}));
+    }
+  }
 
 
   /* ----------------FINE ROBA INERENTE LA RICERCA -------------------- */
@@ -142,12 +148,14 @@ export default function Example() {
               {/* Barra di ricerca */}
               <div className="hidden sm:block sm:ml-6 lg:w-96 md:w-44">
                 <div className="flex">
+                  <form onSubmit={cerca}>
                   <input
                   onChange={handleInputChange}
                     type="text"
                     placeholder="Search..."
                     className="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                   />
+                  </form>
 
                   <button className="bg-white p-1 ml-1 rounded-md" onClick={handleOpen}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
