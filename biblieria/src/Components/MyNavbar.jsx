@@ -26,7 +26,7 @@ import { getAllBooks, selezionaCategoria } from "../slice/bookSlice";
 
 //VOCI NAVBAR
 const navigation = [
-  /* { name: 'Homepage', href: '#', current: true }, */
+  { name: 'Lista Autori', href: "/author-list", current: true },
   /*  { name: 'Team', href: '#', current: false }, */
 ];
 
@@ -131,8 +131,8 @@ export default function Example() {
                           href={item.href}
                           className={classNames(
                             item.current
-                              ? "bg-gray-900 text-white"
-                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                              ? "bg-white text-dark font-bold font-sans no-underline mt-1.5"
+                              : "text-dark hover:bg-gray-700 hover:text-white",
                             "rounded-md px-3 py-2 text-sm font-medium"
                           )}
                           aria-current={item.current ? "page" : undefined}
