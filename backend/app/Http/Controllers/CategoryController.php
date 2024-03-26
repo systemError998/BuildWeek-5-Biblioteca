@@ -6,15 +6,17 @@ use App\Models\Categoria;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Category::with("books")->with("authors")->orderBy("name","asc")->get();
+        ['category' => $category] = $request;
+        return Category::with("books")->with("authors")->orderBy("name", "asc")->where('name', 'like', "%$category%")->get();
     }
 
     /**
@@ -30,16 +32,16 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $newCategory=$request->only(["name"]);
+        $newCategory = $request->only(["name"]);
         try {
-            $category=Categoria::create($newCategory);
+            $category = Categoria::create($newCategory);
             if ($category) {
-                return ["message" => "Categoria creato con successo"];
+                return ["message" => "Categoria creato con successo", "category" => $category];
             } else {
-                return ["message" => "Errore durante la creazione della Categoria", "error"=>"Categoria non presente o che cazzo ne so"];
+                return ["message" => "Errore durante la creazione della Categoria", "error" => "Categoria non presente o che cazzo ne so"];
             }
         } catch (\Throwable $th) {
-            return ["message" => "Errore durante la creazione della Categoria: ", "error"=>$th];
+            return ["message" => "Errore durante la creazione della Categoria: ", "error" => $th];
         }
     }
 
@@ -64,7 +66,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->name =$request->name;
+        $category->name = $request->name;
         $category->update();
         return $category;
     }
@@ -76,9 +78,9 @@ class CategoryController extends Controller
     {
         try {
             $category->delete();
-            return ["message"=>"L'oggetto è stato eliminato con successo"];
+            return ["message" => "L'oggetto è stato eliminato con successo"];
         } catch (\Throwable $th) {
-            return ["message"=>"Si è verificato un errore", "error"=>$th];
+            return ["message" => "Si è verificato un errore", "error" => $th];
         }
     }
 }
