@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { getBookings } from '../../slice/bookingSlice';
 
-export default function ActiveBookings() {
+export default function ExpiredBookings() {
   const array = [
     'prenotazione',
     'prenotazione',
@@ -13,23 +14,42 @@ export default function ActiveBookings() {
     'prenotazione',
     'prenotazione'
 ]
+const dispatch = useDispatch()
+
+const bookings= useSelector(state=>state.bookings.listaBooking)
+
+useEffect(()=>{
+    dispatch(getBookings())
+},[])
+
+useEffect(()=>{
+    console.log(bookings)
+},[bookings])
 
 return (
     <>
-    <div className="bg-white py- mt-3 rounded-md ">
-        <p className='uppercase font-sans font-semibold border-b-2 py-2 text-center'> STORICO PRENOTAZIONI </p>
+    <div className="bg-white mt-3 rounded-md ">
+        <p className='uppercase font-sans font-semibold border-b-2 py-2 text-center'> PRESTITI SCADUTI </p>
 
         <ul className="uppercase font-sans font-semibold pl-2">
-            {array.map((categoria, index) => (
+            {bookings && bookings.filter(b => b.is_active == 0).map((booking, index) => (
                 <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800 '>
                     <div className='col-6 w-36'>
-                        <img className=' h-36 ' src="https://m.media-amazon.com/images/I/41kbjmfuAdL._AC_UF1000,1000_QL80_.jpg" alt="" />
+                        <Link to={`/book/${booking.book_id}`}>
+                            <img className=' h-36 ' src={booking.book.cover_url} alt="" /> {/* mettere immagine casuale */}
+                        </Link>
+                        
                     </div>
                     <div className='col-6 p-0 pt-1'>
-                        <p className='text-xs'>viaggio al centro della terra</p>
-                        <p className='text-sm'>giulio verne</p>
-                        <button className='text-sm darkBlue py-2 px-4 text-white hover:text-blue-800 mt-4'> ESTENDI </button>
+                    <Link to={`/book/${booking.book_id}`} className='text-decoration-none'>
+                        <p className='text-xs'>{booking.book.title}</p>
+                    </Link>
+                    <Link to={`/book/${booking.book.author_id}`} className='text-decoration-none'>
+                        <p className='text-sm capitalize mt-2'>{booking.book.author.full_name}</p>
+                    </Link>
+                 
                     </div>
+                    
                 </div>
             ))}
         </ul>

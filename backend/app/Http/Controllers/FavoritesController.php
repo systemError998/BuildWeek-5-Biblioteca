@@ -30,6 +30,7 @@ class FavoritesController extends Controller
      */
     public function store(StoreFavoritesRequest $request)
     {
+        $this->authorize('create', [Favorites::class]);
         $newFav = $request->only(["book_id"]);
         $newFav["user_id"]= Auth::user()->id;
         $fav = Favorites::create($newFav);
