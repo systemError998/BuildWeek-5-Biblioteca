@@ -11,8 +11,8 @@ export default function ErrorNotAuthorized() {
       <div className='container ' >
           <img src={divieto} className='rounded-5 position-absolute top-50 start-50 translate-middle' alt="" />
           <button onClick={()=>{
-            navigate("/login")
-          }} type="button" class="btn btn-dark position-absolute top-50 start-50 translate-middle">Accedi</button>
+            navigate("/")
+          }} type="button" class="btn btn-dark position-absolute top-50 start-50 translate-middle">Torna alla Home</button>
       </div>
     </>
   )
