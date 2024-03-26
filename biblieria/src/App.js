@@ -19,6 +19,7 @@ import AdminPage from "./Pages/admin/AdminPage.jsx";
 import AddUserPage from "./Pages/admin/AddUserPage.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import ResetPassword from "./Pages/ResetPassword.jsx";
+import ErrorNotAuthorized from "./Pages/ErrorNotAuthorized.jsx";
 
 function App() {
   return (
@@ -43,7 +44,6 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/createUser" element={<AddUserPage />} />
           </Route>
-
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>
