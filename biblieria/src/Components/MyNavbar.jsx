@@ -38,7 +38,7 @@ export default function Example() {
   const [abstratc, setAbstratc]= useState("");
   const [author, setAuthor]= useState("");
   const [year, setYear]= useState("");
-
+  const [categoriaRicerca,setCategoriaRicerca]=useState(null);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpen = () => setOpenModal((cur) => !cur);
   const { user, logout } = useAuthContext();
