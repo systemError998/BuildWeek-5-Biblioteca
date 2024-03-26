@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import useAuthContext from "../context/AuthContext";
 import axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
-  const { user, errors } = useAuthContext();
+  const { user, setUser, errors } = useAuthContext();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
@@ -11,18 +12,28 @@ export default function EditProfile() {
   const [loadingUpdate, setLoadingUpdate] = useState(false);
   const [loadingDelete, setLoadingDelete] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleUpdate = (e) => {
     e.preventDefault();
-    axios.patch(`/admin/user/${user.id}`, {
-      name,
-      email,
-      profile_img,
-    });
+    setLoadingUpdate(true);
+    axios
+      .patch(`/admin/user/${user.id}`, {
+        name,
+        email,
+        profile_img,
+      })
+      .then(() => navigate("/"));
   };
 
   const deleteProfile = (e) => {
     e.preventDefault();
+    setLoadingDelete(true);
     window.confirm("Are you sure you want to delete your account?");
+    axios.delete(`admin/user/${user.id}`).then(() => {
+      setUser(null);
+      navigate("/");
+    });
   };
 
   return (
@@ -89,8 +100,12 @@ export default function EditProfile() {
             />
           </div>
 
-          <button type="submit" className="btn btn-warning ">
-            UPDATE
+          <button
+            disabled={loadingUpdate}
+            type="submit"
+            className="btn btn-warning "
+          >
+            {!loadingUpdate ? "UPDATE" : "Loading..."}
           </button>
         </form>
 
@@ -98,8 +113,12 @@ export default function EditProfile() {
           onSubmit={deleteProfile}
           className="w-75 position-relative top-0 start-50 translate-middle-x"
         >
-          <button type="submit" className="btn btn-danger">
-            DELETE ACCOUNT
+          <button
+            disabled={loadingDelete}
+            type="submit"
+            className="btn btn-danger"
+          >
+            {!loadingDelete ? "DELETE ACCOUNT" : "Loading..."}
           </button>
         </form>
       </div>
