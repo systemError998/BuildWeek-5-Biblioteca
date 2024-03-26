@@ -22,7 +22,7 @@ export default function RelatedContent() {
 
   return (
     
-    <div className="bg-white mt-3 rounded-md ">
+    <div className="bg-white mt-4 rounded-md ">
         <p className='font-sans font-semibold border-b-2 py-2 text-center'>
           <button className="uppercase no-underline"  onClick={()=> navigate(`/author/${author.id}`)}>
              Altri libri di {author.full_name}

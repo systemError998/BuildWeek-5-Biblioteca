@@ -55,7 +55,7 @@ export default function BookDetailComponent() {
 
     return (
         book.author ? <>
-            <div className="container bg-white rounded-2 p-5 mt-3 font-sans">
+            <div className="container bg-white rounded-2 p-5 mt-4 font-sans">
                 <div>
                     {user && user.is_admin ?
                         (
