@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -18,6 +18,8 @@ import {
   Input,
   Checkbox,
 } from "@material-tailwind/react";
+import { Image } from "react-bootstrap";
+import Logo from '../assets/img/logo.png'
 
 //VOCI NAVBAR
 const navigation = [
@@ -30,14 +32,17 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+  
+  const [query, setQuery] =useState("");
+  const [title, setTitle]= useState("");
+  const [abstratc, setAbstratc]= useState("");
+  const [author, setAuthor]= useState("");
+  const [year, setYear]= useState("");
 
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpen = () => setOpenModal((cur) => !cur);
-
   const { user, logout } = useAuthContext();
-
   const { pathname } = useLocation();
-
   const handleLogout = async (e) => {
     e.preventDefault();
     logout();
@@ -63,28 +68,27 @@ export default function Example() {
               </div>
               <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <a href="localhost:3000">
-                    <img
-                      href="localhost:3000"
+                  <Link to={"/"}>
+                    <Image
+                      
                       className="h-10 w-auto"
-                      src="logo.png"
-                      alt="Your Company"
+                      src={Logo}
+                      alt="Librioteca"
                     />
-                  </a>
+                  </Link>
                 </div>
                 {/* admin button */}
-                {user?.is_admin && (pathname !== '/admin') && (
+               {user?.is_admin && (pathname !== '/admin') ?
+               
                   <Link className="nav-link text-white py-3 px-3 ms-4 rounded-lg border border-white"
                     to={"/admin"}>
                     Admin
-                  </Link>
-                )}
-                {user?.is_admin && (pathname === '/admin') && (
+                  </Link> : ''}
+                {user?.is_admin && (pathname === '/admin') ? 
                   <Link className="nav-link text-white py-3 px-3 ms-4 rounded-lg border border-white"
                     to={"/"}>
                     Home
-                  </Link>
-                )}
+                  </Link> : ''}  
                 {/* end admin button */}
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">

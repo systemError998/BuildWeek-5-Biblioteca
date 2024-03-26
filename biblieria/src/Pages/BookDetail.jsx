@@ -18,8 +18,6 @@ export const BookDetail = () => {
       <Row>
         <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
          <RelatedContent />
-         <RelatedContent />
-          
         </Col>
         <Col md={{ span: 7 }} lg={{ span: 8 }}>
           {/* Componenti Main*/}

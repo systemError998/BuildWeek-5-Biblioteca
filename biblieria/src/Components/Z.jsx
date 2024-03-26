@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+/* import React, { useEffect } from 'react';
 import axios from 'axios';
 import axiosLibrioteca from '../api/axios';
 
@@ -77,16 +77,15 @@ export default function Z() {
     let urlAutore = "https://www.googleapis.com/books/v1/volumes?printType=books&maxResults=40&q=inauthor:";
 
     useEffect(() => {
-        for (const autore of autori) {
-            
+        for (let i = 0; i < autori.length; i++) {
+            setTimeout(() => {                
+                chiamatePerAutore(autori[i]);
+            }, (1+i) * 4000); 
         }
-        autori.forEach(autore => {
-          
-        });
     }, [])
 
 
-
+   
 
 
     function mettiLibro(libro) {
@@ -107,32 +106,22 @@ export default function Z() {
     }
 
     function chiamatePerAutore(autore) {
-        setTimeout(() => {
+      
             axios.get(urlAutore + autore).then(response => {
-                console.log(response.data);
+               let libri= response.data.items;
+               for (let i = 0; i < libri.length; i++) {
+                setTimeout(() => {                
+                    mettiCategoria(libri[i].volumeInfo);
+                }, (1+i) * 4000); 
+            }
             })
-        }, 2000);
+      
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     return (
         <div>Z</div>
     )
 }
+ */

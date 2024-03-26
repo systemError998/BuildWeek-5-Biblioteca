@@ -36,9 +36,7 @@ export const AuthorPage = () => {
         <Col className="d-none d-md-block" lg={2} style={{ position: "relative" }}>
           {/* Componenti Sidebar Destro*/}
           <MyFavorites />
-          <Pagination />
-          <ActiveBookings />
-          <Pagination />
+          
         </Col>
       </Row> 
       {/* : <LoadingHomeComponent />}  */}
