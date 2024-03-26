@@ -35,7 +35,7 @@ export default function ProfileDetail() {
                 </Link>
 
                 <div className="flex justify-center gap-10 box-border py-5 w-1/2">
-                    <img src={user.profile_img} alt="" className="rounded-full" style={{width:"200px", height:"200px"}} />
+                    <img src={user.profile_img} alt="" className="rounded-full shrink-0 flex-0" style={{width:"200px", height:"200px"}} />
                     <div>
                         <div className='w-96 h-100 p-5 rounded-lg'>
                             <p className="font-bold font-serif text-4xl pb-2 inline-block text-white"> {user.name} </p>
