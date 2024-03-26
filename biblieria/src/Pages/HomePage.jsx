@@ -75,8 +75,7 @@ export default function HomePage() {
             {/* Componenti Sidebar Destro*/}
             {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
             <MyFavorites />
-            <Pagination />
-            <Pagination />
+            
           </Col>
         </Row>
         {/* : <LoadingHomeComponent />}  */}

@@ -24,10 +24,13 @@ export default function BooksList() {
           
           
             <div className="flex flex-wrap justify-center gap-x-10 gap-y-5 mt-4 pt-3">
-            {loading && 
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>}
+                {loading && 
+                <div className='w-full flex justify-center py-12'>
+                <div className="spinner-border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+                </div>}
+                
                 { books.map((book, index) => (
                         <CardLibro key={index} libro={book} />
                     ))}

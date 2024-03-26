@@ -4,7 +4,7 @@ import Z from '../Components/Z'
 
 export default function NotFoundPage() {
   return (
-    <div className='bg-white flex justify-center mx-20 mt-20'>
+    <div className='bg-white flex justify-center mx-20 mt-44'>
       
       <div className="w-full h-96 flex flex-col lg:flex-row items-center justify-center space-y-16 lg:space-y-0 space-x-8 2xl:space-x-0">
   <div className="w-full lg:w-1/2 flex flex-col items-center justify-center lg:px-2 xl:px-0 text-center">
