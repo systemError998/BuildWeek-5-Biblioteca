@@ -19,7 +19,7 @@ class AuthorFactory extends Factory
         $year = rand(1950, 1990);
         return [
             'full_name'=>fake()->name(),
-            'country'=>fake()->country(),
+            'country'=>fake()->country()." ".fake()->countryCode(),
             'year'=>fake()->year,
             "biography"=>fake()->paragraphs(5,true),
         ];
