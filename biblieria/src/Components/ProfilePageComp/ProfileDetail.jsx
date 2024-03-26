@@ -48,17 +48,17 @@ export default function ProfileDetail() {
         <div className="container bg-white mt-3 rounded-md">
             <div className="row gap-3 mt-4 pt-3 mb-4">
                 <h3 className='darkText font-sans font-bold text-lg uppercase'>I tuoi preferiti</h3>
-                <div className='d-flex flex-wrap' >
+                <div className='d-flex flex-wrap justify-content-center' >
                 {preferiti && preferiti.map((e,index)=>
                     
-                            <div key={index} className='my-2 pb-2 cursor-pointer hover:text-blue-800 '>
-                                <div className=' w-36'>
-                                    <img className=' h-36 ' src={e.book.cover_url} alt="" />
+                            <div key={index} className='my-2 mx-2 pb-2 cursor-pointer hover:text-blue-800 '>
+                                <div className=' w-32'>
+                                    <img className='w-32 h-40 ' src={e.book.cover_url} alt="" />
                                 </div>
-                                <div className='p-0 pt-1'>
+                                <div className='p-0 text-center pt-1'>
                                     <p className='text-xs'>{e.book.title}</p>
                                     <p className='text-sm'>{e.book.author.full_name}</p>
-                                    <button  className='text-sm darkBlue py-2 px-4 text-white hover:text-blue-800 mt-4'> ELIMINA </button>
+                                    <button  className='text-sm mx-auto darkBlue py-2 px-4 text-white hover:text-blue-800 mt-4'> ELIMINA </button>
                                 </div>
                             </div>
                     
