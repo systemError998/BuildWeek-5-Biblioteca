@@ -14,12 +14,19 @@ class AuthorController extends Controller
      */
     public function index(Request $request)
     {
-        ['page' => $page, "author"=>$author] = $request;
-        $page=$page ? $page : 1;
+        /*    ['page' => $page, "author"=>$author] = $request;
+           $page=$page ? $page : 1;
+           return Author::with("books")->with("categories")
+                           ->where('full_name', 'like', "%$author%")
+                           ->orderBy("full_name","asc")
+                           ->paginate(20, ['*'], 'page', $page); */
+
+        ['page' => $page, "author" => $author] = $request;
+        $page = $page ? $page : 1;
         return Author::with("books")->with("categories")
-                        ->where('full_name', 'like', "%$author%")
-                        ->orderBy("full_name","asc")
-                        ->paginate(20, ['*'], 'page', $page);
+            ->where('full_name', 'like', "%$author%")
+            ->orderBy("full_name", "asc")
+            ->get();
     }
 
     /**
@@ -35,7 +42,26 @@ class AuthorController extends Controller
      */
     public function store(StoreAuthorRequest $request)
     {
-        
+        $biografiaDefault = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero vel totam nulla, enim deserunt sequi exercitationem nobis corrupti quidem maxime, impedit laudantium illum saepe sapiente sint reprehenderit aliquam aperiam tempore!";
+        $biografiaDefault .= $biografiaDefault . $biografiaDefault;
+
+        $newAuthor = $request->only(['full_name', 'year', 'country']);
+        if ($request->has("profile_img")) {
+            $newAuthor["profile_img"] = $request->profile_img;
+        }
+        $newAuthor["biography"] = $request->has("biography") ? $request->biography : $biografiaDefault;
+
+        try {
+            $author = Author::create($newAuthor);
+            if ($author) {
+                return ["message" => "Libro creato con successo", "author" => $author];
+            } else {
+                return ["message" => "Errore durante la creazione del libro", "error" => "Libro non presente o che cazzo ne so"];
+            }
+        } catch (\Throwable $th) {
+            return ["message" => "Errore durante la creazione del libro: ", "error" => $th];
+        }
+
     }
 
     /**
@@ -69,9 +95,9 @@ class AuthorController extends Controller
     {
         try {
             $author->delete();
-            return ["message"=>"L'oggetto è stato eliminato con successo"];
+            return ["message" => "L'oggetto è stato eliminato con successo"];
         } catch (\Throwable $th) {
-            return ["message"=>"Si è verificato un errore", "error"=>$th];
+            return ["message" => "Si è verificato un errore", "error" => $th];
         }
     }
 }

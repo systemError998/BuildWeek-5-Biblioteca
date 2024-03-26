@@ -23,9 +23,40 @@ export const createBooking =
     return axios.post(endPointBooking, {
                         book_id: bookId
                     })
-    .then(response=> console.log(response))
+    .then(response=> {
+        dispatch(getBookings()) 
+        console.log(response)})
     .catch(error=>console.log(error));
 })
+
+export const cancelBooking =
+    createAsyncThunk("Bookings/fetch", async (bookingId, { dispatch }) => {
+    
+    return axios.delete(endPointBooking+'/'+bookingId)
+    .then(response=> {
+        dispatch(getBookings()) 
+        console.log(response)})
+    .catch(error=>console.log(error));
+})
+
+export const extendBooking =
+    createAsyncThunk("Bookings/fetch", async (args = {}, { dispatch }) => {
+    let {id, expDate} = args
+    let oldDate = new Date(expDate)
+    console.log(oldDate)
+    
+    oldDate.setDate(oldDate.getDate()+15)
+    let newDate= oldDate.toISOString()
+    return axios.put(endPointBooking+'/'+id, {
+        extended: true,
+        expiring_date: newDate.slice(0,10) // tutto un giro demoniaco per arrivare a sta data demmè
+    })
+    .then(response=> {
+        dispatch(getBookings()) 
+        console.log(response)})
+    .catch(error=>console.log(error));
+})
+
 
 
 

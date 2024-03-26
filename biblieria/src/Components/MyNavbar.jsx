@@ -138,7 +138,7 @@ export default function Example() {
                       <div className="w-72 flex flex-wrap mx-auto gap-y-2">
                         <Input color="indigo" label="TITOLO LIBRO" />
                         <Input color="indigo" label="NOME AUTORE" />
-                        <Input color="indigo" label="ANNO PUBBLICAZIONE" />
+                        <Input type="number" color="indigo" label="ANNO PUBBLICAZIONE" />
                         <Input color="indigo" label="ESTRATTO" />
                       </div>
                         <CardFooter>

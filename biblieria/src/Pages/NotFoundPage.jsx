@@ -1,5 +1,6 @@
 import React from 'react'
 import "../assets/css/babyStyle.css"
+import Z from '../Components/Z'
 
 export default function NotFoundPage() {
   return (
@@ -222,7 +223,7 @@ export default function NotFoundPage() {
   </div>
 </div>
 
-
+<Z/>
     </div>
   )
 }
