@@ -20,6 +20,9 @@ import {
 } from "@material-tailwind/react";
 import { Image } from "react-bootstrap";
 import Logo from '../assets/img/logo.png'
+import { getAuthors } from "../slice/authorSlice";
+import { useSelector,useDispatch  } from 'react-redux';
+import { getAllBooks } from "../slice/bookSlice";
 
 //VOCI NAVBAR
 const navigation = [
@@ -32,13 +35,33 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-  
-  const [query, setQuery] =useState("");
-  const [title, setTitle]= useState("");
-  const [abstratc, setAbstratc]= useState("");
-  const [author, setAuthor]= useState("");
-  const [year, setYear]= useState("");
-  const [categoriaRicerca,setCategoriaRicerca]=useState(null);
+
+
+  /* ----------------ROBA INERENTE LA RICERCA -------------------- */
+  const dispatch = useDispatch()
+  const location = useLocation();
+  const [query, setQuery] = useState("");
+  const [title, setTitle] = useState("");
+  const [abstratc, setAbstratc] = useState("");
+  const [author, setAuthor] = useState("");
+  const [year, setYear] = useState("");
+  const [categoriaRicerca, setCategoriaRicerca] = useState(null);
+  const categoriaSelezionata = useSelector(state=>state.libri.categoriaSelezionata)
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value.trim());
+    if (event.target.value.trim() == "") {
+      if (location.pathname === "/") {
+        dispatch(getAllBooks({category: categoriaSelezionata}));
+      } else if (location.pathname === "/authors-list/") {
+        dispatch(getAuthors());
+      }
+    }
+  };
+
+
+  /* ----------------FINE ROBA INERENTE LA RICERCA -------------------- */
+
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpen = () => setOpenModal((cur) => !cur);
   const { user, logout } = useAuthContext();
@@ -48,16 +71,7 @@ export default function Example() {
     logout();
   };
 
- /*  const handleInputChange = (event) => {
-    setQuery(event.target.value.trim());    
-    if (event.target.value.trim()=="") {
-      if (location.pathname === "/") {
-         dispatch(getAllPosts([categoriaSelezionata]));
-      }else if (location.pathname === "/utenti/"){
-        dispatch(getUtenti());
-      }
-    }
-  }; */
+
 
   return (
     <Disclosure as="nav" className="bg-slate-900">
@@ -81,7 +95,7 @@ export default function Example() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link to={"/"}>
                     <Image
-                      
+
                       className="h-10 w-auto"
                       src={Logo}
                       alt="Librioteca"
@@ -89,17 +103,17 @@ export default function Example() {
                   </Link>
                 </div>
                 {/* admin button */}
-               {user?.is_admin && (pathname !== '/admin') ?
-               
+                {user?.is_admin && (pathname !== '/admin') ?
+
                   <Link className="nav-link text-white py-3 px-3 ms-4 rounded-lg border border-white"
                     to={"/admin"}>
                     Admin
                   </Link> : ''}
-                {user?.is_admin && (pathname === '/admin') ? 
+                {user?.is_admin && (pathname === '/admin') ?
                   <Link className="nav-link text-white py-3 px-3 ms-4 rounded-lg border border-white"
                     to={"/"}>
                     Home
-                  </Link> : ''}  
+                  </Link> : ''}
                 {/* end admin button */}
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -129,6 +143,7 @@ export default function Example() {
               <div className="hidden sm:block sm:ml-6 lg:w-96 md:w-44">
                 <div className="flex">
                   <input
+                  onChange={handleInputChange}
                     type="text"
                     placeholder="Search..."
                     className="w-full px-4 py-2 rounded-md border border-gray-300 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
@@ -147,24 +162,24 @@ export default function Example() {
                   >
                     <Card className="mx-auto w-full max-w-[24rem]">
                       <CardBody className="flex flex-col gap-4 justify-center">
-                      <Typography variant="h4" color="blue-gray" className="text-center">
-                        RICERCA AVANZATA
-                      </Typography>
-                      <div className="w-72 flex flex-wrap mx-auto gap-y-2">
-                        <Input color="indigo" label="TITOLO LIBRO" />
-                        <Input color="indigo" label="NOME AUTORE" />
-                        <Input type="number" color="indigo" label="ANNO PUBBLICAZIONE" />
-                        <Input color="indigo" label="ESTRATTO" />
-                      </div>
+                        <Typography variant="h4" color="blue-gray" className="text-center">
+                          RICERCA AVANZATA
+                        </Typography>
+                        <div className="w-72 flex flex-wrap mx-auto gap-y-2">
+                          <Input color="indigo" label="TITOLO LIBRO" />
+                          <Input color="indigo" label="NOME AUTORE" />
+                          <Input type="number" color="indigo" label="ANNO PUBBLICAZIONE" />
+                          <Input color="indigo" label="ESTRATTO" />
+                        </div>
                         <CardFooter>
 
-                        <button
-          className="block w-full select-none rounded-lg bg-gradient-to-tr from-indigo-900 to-indigo-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-          type="button">
-          CERCA
-        </button>
+                          <button
+                            className="block w-full select-none rounded-lg bg-gradient-to-tr from-indigo-900 to-indigo-400 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="button">
+                            CERCA
+                          </button>
 
-                      </CardFooter>
+                        </CardFooter>
                       </CardBody>
                     </Card>
                   </Dialog>
@@ -225,7 +240,7 @@ export default function Example() {
                         <Button variant="gradient" onClick={handleOpen} fullWidth>
                           Sign In
                         </Button>
-                       
+
                       </CardFooter>
                     </Card>
                   </Dialog>
