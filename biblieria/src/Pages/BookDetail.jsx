@@ -13,24 +13,21 @@ import Footer from '../Components/Footer';
 export const BookDetail = () => {
   return (
     <>
-      <Container>
+      <div className='mx-3'>
       {/* {posts.length > 0 ?  */}
       <Row>
         <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
-          { <div style={{ height: "10rem", border: "1px solid black" }}></div> }
          <RelatedContent />
          <RelatedContent />
           
         </Col>
         <Col md={{ span: 7 }} lg={{ span: 8 }}>
           {/* Componenti Main*/}
-          { <div style={{ height: "10rem", border: "1px solid black" }}></div> }
           <BookDetailComponent />
            
         </Col>
         <Col className="d-none d-md-block" lg={2} style={{ position: "relative" }}>
           {/* Componenti Sidebar Destro*/}
-          { <div style={{ height: "10rem", border: "1px solid black" }}></div> }
           <MyFavorites />
           <Pagination />
           <ActiveBookings />
@@ -38,10 +35,10 @@ export const BookDetail = () => {
         </Col>
       </Row> 
       {/* : <LoadingHomeComponent />}  */}
-
+      </div>
       <Footer />
 
-      </Container>
+      
     </>
     
   )

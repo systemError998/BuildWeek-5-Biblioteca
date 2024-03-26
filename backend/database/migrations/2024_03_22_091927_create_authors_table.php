@@ -11,6 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $biografiaDefault ="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero vel totam nulla, enim deserunt sequi exercitationem nobis corrupti quidem maxime, impedit laudantium illum saepe sapiente sint reprehenderit aliquam aperiam tempore!";
+        $biografiaDefault.=$biografiaDefault.$biografiaDefault;
+
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
