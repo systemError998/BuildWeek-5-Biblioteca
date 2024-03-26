@@ -16,7 +16,7 @@ export default function BooksList() {
     dispatch(getAllBooks())
   }, [])
 
-  console.log(books);
+  /* console.log(books); */
 
   return (
       <>

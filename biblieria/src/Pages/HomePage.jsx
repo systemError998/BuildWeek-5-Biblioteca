@@ -47,7 +47,7 @@ export default function HomePage() {
     dispatch(getAuthors())
   },[])
   useEffect(()=>{
-    console.log(listaLibri);
+    /* console.log(listaLibri) */;
   },[listaLibri])
 
   useEffect(()=>{
@@ -70,7 +70,7 @@ export default function HomePage() {
   return (
     <>
         <FakeCarousel />
-        <Button onClick={handleSubmit}>CLICCA QUI PERDIANA</Button>
+        {/* <Button className='hidden' onClick={handleSubmit}>CLICCA QUI PERDIANA</Button> */}
         {/* {posts.length > 0 ?  */}
         <div className='mx-3'>
         <Row className='px-1'>

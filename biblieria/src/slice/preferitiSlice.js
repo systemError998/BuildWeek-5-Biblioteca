@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/axios";
 
-const endPointPreferiti="/api/author"
+const endPointPreferiti="/api/favorites"
 
 const initialState={
     listaPreferiti:[],
@@ -12,16 +12,23 @@ const initialState={
 //primo parametro nome azione/ oprerazione che vuoi eseguire fetch, parametro 2 operazione async
 
 export const getPreferiti =
-    createAsyncThunk("Preferiti/fetch", async()=>{
-       return axios.get(endPointPreferiti).then(response=> {console.log(response);return response.data}).catch(error=>console.log(error));
+    createAsyncThunk("preferiti/fetch", async()=>{
+       return axios.get(endPointPreferiti)
+                    .then(response=> {console.log(response);
+                    return response.data})
+                    .catch(error=>console.log(error));
     })
 
 
 export const PreferitiSlice = createSlice(
     {
-        name: "authors",
+        name: "preferiti",
         initialState: initialState,
-        reducers:{            
+        reducers:{       
+            addPreferito:(state,action)=>{
+                console.log(action);
+                state.listaPreferiti.push(action.payload)
+            }     
         },
         extraReducers: (builder)=> {
             builder

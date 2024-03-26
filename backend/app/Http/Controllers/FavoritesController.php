@@ -14,8 +14,7 @@ class FavoritesController extends Controller
      */
     public function index()
     {
-       return Favorites::where("user_id", Auth::user()->id)->get();
-        
+       return Favorites::where("user_id", Auth::user()->id)->with('book.author')->get();
     }
 
     /**
