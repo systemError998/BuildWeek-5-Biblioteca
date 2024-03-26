@@ -56,11 +56,12 @@ export default function Example() {
     }
   };
   function cerca(event) {
+    console.log(location.pathname);
     event.preventDefault();
     if (location.pathname === "/") { 
       dispatch(selezionaCategoria(categoriaRicerca));
       dispatch(getAllBooks({title:query}));     
-    }else if (location.pathname === "/authors-list/"){
+    }else if (location.pathname === "/author-list"){
       dispatch(getAuthors({author:query}));
     }
   }
