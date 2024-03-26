@@ -36,7 +36,7 @@ return (
                 <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800 '>
                     <div className='col-6 w-36'>
                         <Link to={`/book/${booking.book_id}`}>
-                            <img className=' h-36 ' src={booking.book.cover_url} alt="" /> {/* mettere immagine casuale */}
+                            <img className=' w-32 h-40 ' src={booking.book.cover_url} alt="" /> {/* mettere immagine casuale */}
                         </Link>
                         
                     </div>
