@@ -15,7 +15,7 @@ export default function Footer() {
                     <a className='no-underline text-black text-1xl my-3' href="/#home">Libri più venduti</a>
                 </div>
                 <div class="flex-grow flex flex-col">
-                <a className='no-underline text-black text-1xl my-3' href="/#home">Tutti gli Autori</a>
+                <a className='no-underline text-black text-1xl my-3' href="/author-list">Tutti gli Autori</a>
                     <a className='no-underline text-black text-1xl my-3' href="/#home">Tutti gli Editori</a>
                     <a className='no-underline text-black text-1xl my-3' href="/#home">Tutte le categorie</a>
                 </div>
