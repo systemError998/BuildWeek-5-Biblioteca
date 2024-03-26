@@ -34,9 +34,9 @@ class FavoritesController extends Controller
         $newFav["user_id"]= Auth::user()->id;
         $fav = Favorites::create($newFav);
         if($fav){
-           return "Libro aggiunto ai preferiti";
+           return ["message" => "Libro aggiunto ai preferiti"];
         } else {
-            return ["message" => "Errore durante la creazione del favorito", "error"=>"favorito non presente o che cazzo ne so"];
+            return ["message" => "Ops! C'è stato un errore ", "error"=>"favorito non presente o che cazzo ne so"];
         };
     }
 

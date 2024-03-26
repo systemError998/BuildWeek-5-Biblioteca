@@ -9,20 +9,44 @@ import PieChart from "./PieChart";
 export default function AdminPage() {
   return (
     <Container>
+
       <Row>
-        <Col>
-          <Link to={"/admin/createUser"} className=" btn btn-light bg-white my-4">
+      <div className="flex flex-row">
+        <div className="me-4">
+          <Link
+            to={"/admin/createUser"}
+            className=" btn btn-light bg-white my-4"
+          >
             Add User
           </Link>
+        </div>
+        <div className="me-4">
+          <Link
+            to={"/admin/createBook"}
+            className=" btn btn-light bg-white my-4"
+          >
+            Add Book
+          </Link>
+        </div>
+        <div className="me-4">
+          <Link
+            to={"/admin/createAuthor"}
+            className=" btn btn-light bg-white my-4"
+          >
+            Add Author
+          </Link>
+        </div>
+      </div>
+        <Col>
           <AllUsersAdmin />
         </Col>
         <Col>
-        <Row className="mt-5">
-          <Chart />
-        </Row>
-        <Row className="my-4">
-          <PieChart />
-        </Row>
+          <Row className="mt-5">
+            <Chart />
+          </Row>
+          <Row className="my-4">
+            <PieChart />
+          </Row>
         </Col>
       </Row>
     </Container>
