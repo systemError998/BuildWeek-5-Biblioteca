@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import "../assets/css/babyStyle.css"
 import { getPreferiti } from '../slice/preferitiSlice.js';
 import { useDispatch, useSelector } from 'react-redux'
+import { Image, Spinner } from 'react-bootstrap'
 
 
 export default function MyFavorites() {
@@ -24,7 +25,7 @@ export default function MyFavorites() {
     ]
 
     const preferiti = useSelector(state => state.preferiti.listaPreferiti)
-    console.log(preferiti);
+    const loading = useSelector(state => state.preferiti.loading)
 
     useEffect(() => {
         dispatch(getPreferiti())
@@ -37,7 +38,9 @@ export default function MyFavorites() {
         <p className='uppercase font-sans font-semibold text-lg text-center my-4'> i tuoi prefeeriti </p>
 
         <ul className="uppercase font-sans font-semibold pl-2">
-            {preferiti?.map((preferito, index) => (
+            { loading ? <div className='text-center mt-5 mb-10' > <Spinner></Spinner> </div>
+            :
+            preferiti?.map((preferito, index) => (
                 <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800 '>
                     <div className='col-6 w-36'>
                         <img className=' h-36 ' src={preferito.book.cover_url} alt="" />

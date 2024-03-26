@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/axios";
 
+
 const endPointPreferiti="/api/favorites"
 
 const initialState={
@@ -28,7 +29,7 @@ export const PreferitiSlice = createSlice(
             addPreferito:(state,action)=>{
                 console.log(action);
                 state.listaPreferiti.push(action.payload)
-            }     
+            }
         },
         extraReducers: (builder)=> {
             builder
@@ -47,4 +48,5 @@ export const PreferitiSlice = createSlice(
 })
 
 const {reducer,actions}=PreferitiSlice;
+export const { addPreferito } = actions
 export default reducer
