@@ -19,6 +19,7 @@ import AdminPage from "./Pages/admin/AdminPage.jsx";
 import AddUserPage from "./Pages/admin/AddUserPage.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import ResetPassword from "./Pages/ResetPassword.jsx";
+import EditProfile from "./Pages/EditProfile.jsx";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             <Route path="/book/:id" element={<BookDetail />} />
             <Route path="/author/:id" element={<AuthorPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile/edit" element={<EditProfile />} />
           </Route>
           <Route element={<GuestLayout />}>
             <Route path="/login" element={<Login />} />

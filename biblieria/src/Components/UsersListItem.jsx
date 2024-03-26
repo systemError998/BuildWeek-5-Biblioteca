@@ -16,7 +16,7 @@ export function UsersListItem({ user, getAllUsers }) {
     axios
       .delete("/admin/user/" + id)
       .then(() => getAllUsers())
-      .then(() => setLoading(false));
+      
   };
 
   return (

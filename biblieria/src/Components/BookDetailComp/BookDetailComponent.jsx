@@ -52,7 +52,7 @@ return (
            (
            <div>
             <button className='btn btn-light w-75'>Elimina libro</button>
-            <ModBook/>
+            <ModBook />
            </div> 
            )
             :
