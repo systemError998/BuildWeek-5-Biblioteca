@@ -31,6 +31,12 @@
     margin: auto 0;
   }
   
+  .tastoNascosto {
+    height: 0.1rem;
+  }
+  .tastoNascosto:hover {
+    background: white;
+  }
   
   .navigation ul li.active {
     background: #010A26;;

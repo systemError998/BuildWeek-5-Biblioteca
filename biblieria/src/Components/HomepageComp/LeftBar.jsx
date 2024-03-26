@@ -5,7 +5,6 @@ import "../../assets/css/Categories.css"
 import { selezionaCategoria } from '../../slice/bookSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBooks } from '../../slice/bookSlice';
-
 import LeftBarList from './LeftBarList.jsx';
 
 export default function LeftBar() {
@@ -26,13 +25,11 @@ export default function LeftBar() {
 return (
     <>
         <div className="navigation mt-4 rounded-md text-center">
-            <p className='uppercase font-sans font-semibold'> Categorie </p>
+            <p className='uppercase font-sans font-semibold text-lg'> Categorie </p>
             <ul className="uppercase font-sans font-semibold text-center">
-            <li className={"list text-center " + (!categoriaSelezionata ? 'active' : '')} >
+            <li className={"list text-center tastoNascosto hidden" + (!categoriaSelezionata ? 'active' : '')} >
                 <button className="flex gap-1 no-underline uppercase "  onClick={() => { dispatch(getAllBooks()); dispatch(selezionaCategoria(null)) }}>
-                    <span className="iconcina w-7 sm:mx-2 mx-3 inline">
-                    </span>
-                    <span className="testoSide"> QUALSIASI </span>
+                    <span className="hidden testoSide hover:bg-transparent"> QUALSIASI </span>
                 </button>
             </li>
                 { category.map((categoria, index) => (

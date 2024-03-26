@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import "../assets/css/profilo.css"
 import { useNavigate } from 'react-router-dom'
 import "../assets/css/babyStyle.css"
+import { getPreferiti } from '../slice/preferitiSlice.js';
+import { useDispatch, useSelector } from 'react-redux'
 
 
 export default function MyFavorites() {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const array = [
         'prenotazione',
@@ -19,20 +22,29 @@ export default function MyFavorites() {
         'prenotazione',
         'prenotazione'
     ]
+
+    const preferiti = useSelector(state => state.preferiti.listaPreferiti)
+    console.log(preferiti);
+
+    useEffect(() => {
+        dispatch(getPreferiti())
+        console.log(preferiti);
+    }, [])
+
     return (
         <>
-    <div className="bg-white py- mt-3 rounded-md ">
-        <p className='uppercase font-sans font-semibold border-b-2 py-2 text-center'> i tuoi prefeeriti </p>
+    <div className="bg-white py- mt-4 rounded-md ">
+        <p className='uppercase font-sans font-semibold text-lg text-center my-4'> i tuoi prefeeriti </p>
 
         <ul className="uppercase font-sans font-semibold pl-2">
-            {array.map((categoria, index) => (
+            {preferiti?.map((preferito, index) => (
                 <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800 '>
                     <div className='col-6 w-36'>
-                        <img className=' h-36 ' src="https://m.media-amazon.com/images/I/41kbjmfuAdL._AC_UF1000,1000_QL80_.jpg" alt="" />
+                        <img className=' h-36 ' src={preferito.book.cover_url} alt="" />
                     </div>
-                    <div className='col-6 p-0 pt-1'>
-                        <p className='text-xs'>viaggio al centro della terra</p>
-                        <p className='text-sm'>giulio verne</p>
+                    <div className='col-6 p-0 pt-1 pl-0'>
+                        <p className='text-xs mb-3'>{preferito.book.title}</p>
+                        <p className='text-sm'>{preferito.book ? preferito.book.author.full_name : ""}</p>
                     </div>
                 </div>
             ))}

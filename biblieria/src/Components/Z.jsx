@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+/* import React, { useEffect } from 'react';
 import axios from 'axios';
 import axiosLibrioteca from '../api/axios';
 
 export default function Z() {
-   
-  /*   const autori = [
+    let categorie = ["Fiction", "Drama", "Art"]
+    const autori = [
         "Philip Pullman",
         "Neil Gaiman",
         "Giovanni Verga",
@@ -74,18 +74,18 @@ export default function Z() {
         "Ken Follet",
         "Oscar Wilde"
     ];
-    let urlAutoreGoogle = "https://www.googleapis.com/books/v1/volumes?printType=books&maxResults=40&q=inauthor:";
+    let urlAutore = "https://www.googleapis.com/books/v1/volumes?printType=books&maxResults=40&q=inauthor:";
 
     useEffect(() => {
         for (let i = 0; i < autori.length; i++) {
             setTimeout(() => {                
                 chiamatePerAutore(autori[i]);
-            }, i * 2000); 
+            }, (1+i) * 4000); 
         }
     }, [])
 
 
-
+   
 
 
     function mettiLibro(libro) {
@@ -105,35 +105,23 @@ export default function Z() {
 
     }
 
-    function chiamatePerAutore(autore) {      
-            axios.get(urlAutoreGoogle + autore).then(response => {
-              let  libri = response.data.items
-                for (let i = 0; i < libri.length; i++) {
-                    setTimeout(() => {                
-                         (libri[i]); 
-                    }, i * 1500); 
-                }   
+    function chiamatePerAutore(autore) {
+      
+            axios.get(urlAutore + autore).then(response => {
+               let libri= response.data.items;
+               for (let i = 0; i < libri.length; i++) {
+                setTimeout(() => {                
+                    mettiCategoria(libri[i].volumeInfo);
+                }, (1+i) * 4000); 
+            }
             })
-    } */
+      
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     return (
         <div>Z</div>
     )
 }
+ */

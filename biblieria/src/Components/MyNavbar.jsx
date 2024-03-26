@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -32,14 +32,17 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-
+  
+  const [query, setQuery] =useState("");
+  const [title, setTitle]= useState("");
+  const [abstratc, setAbstratc]= useState("");
+  const [author, setAuthor]= useState("");
+  const [year, setYear]= useState("");
+  const [categoriaRicerca,setCategoriaRicerca]=useState(null);
   const [openModal, setOpenModal] = React.useState(false);
   const handleOpen = () => setOpenModal((cur) => !cur);
-
   const { user, logout } = useAuthContext();
-
   const { pathname } = useLocation();
-
   const handleLogout = async (e) => {
     e.preventDefault();
     logout();

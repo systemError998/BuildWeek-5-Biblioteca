@@ -13,7 +13,7 @@ export default function LeftBarList( {categoria} ) {
         console.log((categoriaSelezionata == categoria.id));
     },[categoriaSelezionata])
 
-    console.log(categoria);
+    /* console.log(categoria) */;
 
     return (
         <>
