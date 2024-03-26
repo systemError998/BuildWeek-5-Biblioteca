@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategorie } from '../../slice/categorySlice.js';
 import "../../assets/css/Categories.css"
-import "../../assets/script/Anna.js"
 import { useNavigate } from 'react-router-dom'
 
 export default function LeftBarAuthors({categories}) {

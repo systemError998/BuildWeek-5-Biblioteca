@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react';
 import { getCategorie } from '../../slice/categorySlice.js';
 import "../../assets/css/Categories.css"
-import "../../assets/script/Anna.js"
 import { selezionaCategoria } from '../../slice/bookSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllBooks } from '../../slice/bookSlice';
