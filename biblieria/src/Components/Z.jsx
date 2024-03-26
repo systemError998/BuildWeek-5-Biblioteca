@@ -5,6 +5,8 @@ import axiosLibrioteca from '../api/axios';
 export default function Z() {
     let categorie = ["Fiction", "Drama", "Art"]
     const autori = [
+        "Philip Pullman",
+        "Neil Gaiman",
         "Giovanni Verga",
         "Italo Svevo",
         "J.K. Rowling",
@@ -75,9 +77,11 @@ export default function Z() {
     let urlAutore = "https://www.googleapis.com/books/v1/volumes?printType=books&maxResults=40&q=inauthor:";
 
     useEffect(() => {
+        for (const autore of autori) {
+            
+        }
         autori.forEach(autore => {
-            chiamatePerAutore(autore);
-
+          
         });
     }, [])
 
@@ -103,12 +107,11 @@ export default function Z() {
     }
 
     function chiamatePerAutore(autore) {
-        axios.get(urlAutore + autore).then(response => {
-            console.log(response.data);
-            setTimeout(() => {
-
-            }, 2000)
-        })
+        setTimeout(() => {
+            axios.get(urlAutore + autore).then(response => {
+                console.log(response.data);
+            })
+        }, 2000);
 
     }
 

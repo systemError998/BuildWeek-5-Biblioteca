@@ -37,5 +37,4 @@ Route::get('/dashboard', function(){
 
 Route::resource("/api/booking",BookingController::class)->middleware(['auth', 'verified']);
 Route::resource("/api/category",CategoryController::class);
-Route::resource("/api/booking",BookingController::class); 
 Route::resource("/api/author",AuthorController::class);
