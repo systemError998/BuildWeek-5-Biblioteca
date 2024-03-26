@@ -20,6 +20,7 @@ import AddUserPage from "./Pages/admin/AddUserPage.jsx";
 import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import ResetPassword from "./Pages/ResetPassword.jsx";
 import EditProfile from "./Pages/EditProfile.jsx";
+import AuthorListPage from "./Pages/AuthorListPage";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Scrollata />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/author-list" element={<AuthorListPage />} />
           <Route element={<AuthLayout />}>
             <Route path="/book/:id" element={<BookDetail />} />
             <Route path="/author/:id" element={<AuthorPage />} />
