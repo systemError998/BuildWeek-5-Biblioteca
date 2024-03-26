@@ -85,7 +85,7 @@ export default function HomePage() {
           {/* : <LoadingHomeComponent />}  */}
         </div>
         <Footer />
-        <ModBook/>
+
    </>
   )
 }

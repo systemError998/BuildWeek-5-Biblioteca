@@ -43,6 +43,17 @@ class UserController extends Controller
         return response()->noContent();
     }
 
+
+    public function update(Request $request, User $user){
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->profile_img = $request->profile_img;
+
+        $user->update();
+
+        return $user;
+    }
+
     public function destroy(User $user){
         $user->delete();
     }
