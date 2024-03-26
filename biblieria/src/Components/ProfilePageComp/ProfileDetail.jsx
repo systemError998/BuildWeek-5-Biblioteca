@@ -50,7 +50,7 @@ export default function ProfileDetail() {
                 <h3 className='darkText font-sans font-bold text-lg uppercase'>I tuoi preferiti</h3>
                 <div className='d-flex flex-wrap' >
                 {preferiti && preferiti.map((e,index)=>
-                    <div >
+                    
                             <div key={index} className='my-2 pb-2 cursor-pointer hover:text-blue-800 '>
                                 <div className=' w-36'>
                                     <img className=' h-36 ' src={e.book.cover_url} alt="" />
@@ -61,7 +61,7 @@ export default function ProfileDetail() {
                                     <button  className='text-sm darkBlue py-2 px-4 text-white hover:text-blue-800 mt-4'> ELIMINA </button>
                                 </div>
                             </div>
-                    </div>
+                    
                 )}
                 
                 </div>
