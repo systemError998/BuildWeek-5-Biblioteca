@@ -68,7 +68,6 @@ class BookController extends Controller
         } catch (\Throwable $th) {
             return ["message" => "Errore durante la creazione del libro: ", "error" => $th];
         }
-
     }
 
     /**
@@ -96,7 +95,8 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, Book $book)
     {
-        //
+
+        return 'ciao';
     }
 
     /**

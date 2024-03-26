@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await axios.post("/admin/user", data);
       await getUser();
-      navigate("/");
+      navigate("/admin");
     } catch (err) {
       if (err.response && err.response.status === 422) {
         setErrors(err.response.data.errors);
