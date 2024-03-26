@@ -20,7 +20,6 @@ export const getPreferiti =
                     .catch(error=>console.log(error));
     })
 
-
 export const PreferitiSlice = createSlice(
     {
         name: "preferiti",

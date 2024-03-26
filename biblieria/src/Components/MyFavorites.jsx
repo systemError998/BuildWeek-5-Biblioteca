@@ -37,10 +37,10 @@ export default function MyFavorites() {
             <div className="bg-white py- mt-4 rounded-md">
                 <p className='uppercase font-sans font-semibold text-lg text-center my-4'> i tuoi preferiti </p>
                 <ul className="uppercase font-sans font-semibold pl-2">
-                    {loading ?
+                {loading ?
                         <div className='text-center mt-5 mb-10'> <Spinner></Spinner> </div>
                         :
-                        preferiti.length > 0 && preferiti.map((preferito, index) => (
+                        preferiti && preferiti.map((preferito, index) => (
                             <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800'>
                                 <div className='col-6 w-36'>
                                     <img className='h-36' src={preferito.book.cover_url} alt="" />
