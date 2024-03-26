@@ -17,6 +17,7 @@ export default function AuthorRow({author}) {
             console.log(response.data[0].flag)
             setFlag(response.data[0].flag)
         })
+        .catch(error => console.error(error))
     }, [author])
         
 
@@ -31,10 +32,15 @@ export default function AuthorRow({author}) {
         <div className="col">
             <span className=''>Numero libri: {author.books.length}</span>
         </div>
-        {flag &&
+        {flag ?
             <div className="col">
                 <span className='fs-3'>{flag}</span>
             </div>
+            :
+            <div className="col">
+                <span className='fs-3'>/</span>
+            </div>
+
         }
     </div>
   )
