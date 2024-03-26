@@ -78,7 +78,19 @@ class BookingController extends Controller
      */
     public function update(UpdateBookingRequest $request, Booking $booking)
     {
-        //
+        $bookingData= [
+            'extended'=> true,
+            'expiring_date' => $request->expiring_date
+        ];
+            
+        
+        try {
+            $booking->update($bookingData);
+            
+            return ["message" => "La prenotazione è stata estesa con successo"];
+        } catch (\Throwable $th) {
+            return ["message" => "Si è verificato un errore", "error" => $th];
+        }
     }
 
     /**
@@ -88,7 +100,11 @@ class BookingController extends Controller
     {
         try {
             $booking->delete();
-            return ["message" => "L'oggetto è stato eliminato con successo"];
+            $book = Book::find($booking->book_id);
+            $book->update([
+                "available_copies" => $book->available_copies + 1]);
+            
+            return ["message" => "La prenotazione è stata eliminata con successo"];
         } catch (\Throwable $th) {
             return ["message" => "Si è verificato un errore", "error" => $th];
         }
