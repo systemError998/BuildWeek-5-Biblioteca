@@ -45,7 +45,6 @@ function App() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/createUser" element={<AddUserPage />} />
           </Route>
-
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>

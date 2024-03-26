@@ -75,7 +75,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return $book->load("author")->load("category");
+        return $book->load("author.books")->load("category");
     }
 
     /**
