@@ -35,7 +35,7 @@ export const AuthorSlice = createSlice(
                     state.loading=false
                 })
                 .addCase(getAuthors.fulfilled,(state,action)=>{
-                    state.listaAutori=action.payload
+                    state.listaAuthors=action.payload
                     state.loading=false
         })
     }
