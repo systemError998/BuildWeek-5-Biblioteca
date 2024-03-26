@@ -16,7 +16,7 @@ class BookingController extends Controller
      */
     public function index()
     {
-        return Booking::with("book")->with("user")->where("user_id", "=", Auth::user()->id)->orderBy("is_active", "desc")->orderBy("expiring_date", "asc")->get();
+        return Booking::with("book.author")->with("user")->where("user_id", "=", Auth::user()->id)->orderBy("is_active", "desc")->orderBy("expiring_date", "asc")->get();
     }
 
     /**

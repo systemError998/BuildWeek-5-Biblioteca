@@ -48,6 +48,17 @@ export default function Example() {
     logout();
   };
 
+ /*  const handleInputChange = (event) => {
+    setQuery(event.target.value.trim());    
+    if (event.target.value.trim()=="") {
+      if (location.pathname === "/") {
+         dispatch(getAllPosts([categoriaSelezionata]));
+      }else if (location.pathname === "/utenti/"){
+        dispatch(getUtenti());
+      }
+    }
+  }; */
+
   return (
     <Disclosure as="nav" className="bg-slate-900">
       {({ open }) => (
