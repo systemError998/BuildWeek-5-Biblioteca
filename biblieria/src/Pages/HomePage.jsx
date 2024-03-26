@@ -36,9 +36,6 @@ export default function HomePage() {
   }
 
 
-  
-
-
 
   useEffect(() => {
     dispatch(getAuthors());
@@ -59,11 +56,10 @@ export default function HomePage() {
 
   return (
     <>
-        <FakeCarousel />
-        {/* <Button className='hidden' onClick={handleSubmit}>CLICCA QUI PERDIANA</Button> */}
-        {/* {posts.length > 0 ?  */}
-        <div className='mx-3'>
-
+      <FakeCarousel />
+      {/* <Button onClick={handleSubmit}>CLICCA QUI PERDIANA</Button> */}
+      {/* {posts.length > 0 ?  */}
+      <div className='mx-3'>
         <Row className='px-1'>
           <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
             {/* { <div style={{ height: "10rem", border: "1px solid black" }}></div> } */}
