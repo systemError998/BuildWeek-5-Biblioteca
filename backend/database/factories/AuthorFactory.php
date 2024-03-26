@@ -22,6 +22,7 @@ class AuthorFactory extends Factory
             'country'=>fake()->country(),
             'year'=>fake()->year,
             "biography"=>fake()->paragraphs(5,true),
+            'profile_img'=>'https://source.unsplash.com/random/?person='.fake()->numberBetween(1,50)
         ];
     }
 }
