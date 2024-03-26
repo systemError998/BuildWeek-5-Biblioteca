@@ -21,7 +21,7 @@ export default function BookDetailComponent() {
     let [alreadyExtended, setAlreadyExtended] = useState()
     
     let dispatch= useDispatch()
-   const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios('/api/book/'+id).
@@ -31,22 +31,20 @@ export default function BookDetailComponent() {
                 }).
             catch(err => console.log(err))
         
-    },[mybooking])
+    },[mybooking, id])
 
     useEffect(() => {
         if(mybooking){
-        setAlreadyBooked(mybooking.find((b) => b.book_id == id && b.is_active == 1))
-        setAlreadyExtended(mybooking.find((b) => b.book_id == id && b.is_active == 1 && b.extended == 1))
+            setAlreadyBooked(mybooking.find((b) => b.book_id == id && b.is_active == 1))
+            setAlreadyExtended(mybooking.find((b) => b.book_id == id && b.is_active == 1 && b.extended == 1))
         }
         setCopies(book.available_copies)
-        
-},)
-    
+    },)
 
                 
 return (
     book.author ? <> 
-    <div className="container bg-white rounded-2 p-5 my-5 font-sans">
+    <div className="container bg-white rounded-2 p-5 mt-3 font-sans">
         <div>
            {user && user.is_admin ? 
            (
@@ -97,8 +95,6 @@ return (
                 </> :
                 <button className='btn btn-dark w-75' onClick={()=> dispatch(createBooking(book.id))}>PRENOTA</button>
                 }
-                
-                
             </div>
         </div>
     </div>
