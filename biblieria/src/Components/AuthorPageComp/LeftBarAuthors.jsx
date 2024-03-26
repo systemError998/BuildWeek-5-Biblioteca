@@ -15,8 +15,8 @@ export default function LeftBarAuthors({categories}) {
 
 return (
     <>
-        <div className="navigation mt-3 rounded-md">
-            <p className='uppercase font-sans font-semibold border-b-2 pb-2'> Autori correlati </p>
+        <div className="navigation my-3 rounded-md">
+            <p className='uppercase font-sans font-semibold border-b-2 pb-2 text-center'> Autori correlati </p>
             <ul className="uppercase font-sans font-semibold text-center">
                 {categories &&
                 categories.map((category)=>(
