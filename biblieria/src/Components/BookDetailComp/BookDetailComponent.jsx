@@ -10,6 +10,7 @@ import { addPreferito } from '../../slice/preferitiSlice'
 
 
 export default function BookDetailComponent() {
+
     const { user } = useAuthContext();
 
     const mybooking = useSelector(state => state.bookings.listaBooking)
@@ -25,7 +26,7 @@ export default function BookDetailComponent() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('use effect booking')
+        /* console.log('use effect booking') */
         axios('/api/book/' + id).
             then(response => {
                 /* console.log(response)   */
@@ -42,7 +43,7 @@ export default function BookDetailComponent() {
 
         }
         setCopies(book.available_copies)
-        console.log(alreadyBooked)
+        /* console.log(alreadyBooked) */
     },)
 
 

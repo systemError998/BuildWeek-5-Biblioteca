@@ -34,27 +34,26 @@ export default function MyFavorites() {
 
     return (
         <>
-    <div className="bg-white py- mt-4 rounded-md ">
-        <p className='uppercase font-sans font-semibold text-lg text-center my-4'> i tuoi prefeeriti </p>
-
-        <ul className="uppercase font-sans font-semibold pl-2">
-            { loading ? <div className='text-center mt-5 mb-10' > <Spinner></Spinner> </div>
-            :
-            preferiti?.map((preferito, index) => (
-                <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800 '>
-                    <div className='col-6 w-36'>
-                        <img className=' h-36 ' src={preferito.book.cover_url} alt="" />
-                    </div>
-                    <div className='col-6 p-0 pt-1 pl-0'>
-                        <p className='text-xs mb-3'>{preferito.book.title}</p>
-                        <p className='text-sm'>{preferito.book ? preferito.book.author.full_name : ""}</p>
-                    </div>
-                </div>
-            ))}
-        </ul>
-    </div>
-
-</>
+            <div className="bg-white py- mt-4 rounded-md">
+                <p className='uppercase font-sans font-semibold text-lg text-center my-4'> i tuoi preferiti </p>
+                <ul className="uppercase font-sans font-semibold pl-2">
+                    {loading ?
+                        <div className='text-center mt-5 mb-10'> <Spinner></Spinner> </div>
+                        :
+                        preferiti.length > 0 && preferiti.map((preferito, index) => (
+                            <div key={index} className='row w-full my-2 pb-2 cursor-pointer hover:text-blue-800'>
+                                <div className='col-6 w-36'>
+                                    <img className='h-36' src={preferito.book.cover_url} alt="" />
+                                </div>
+                                <div className='col-6 p-0 pt-1 pl-0'>
+                                    <p className='text-xs mb-3'>{preferito.book.title}</p>
+                                    <p className='text-sm'> {preferito.book ? preferito.book.author.full_name : ""} </p>
+                                </div>
+                            </div>
+                        ))}
+                </ul>
+            </div>
+        </>
 
     )
 }
