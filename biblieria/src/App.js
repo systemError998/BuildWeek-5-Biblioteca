@@ -21,6 +21,7 @@ import ForgotPassword from "./Pages/ForgotPassword.jsx";
 import ResetPassword from "./Pages/ResetPassword.jsx";
 import EditProfile from "./Pages/EditProfile.jsx";
 import AuthorListPage from "./Pages/AuthorListPage";
+import AddBookPage from "./Pages/admin/AddBookPage.jsx";
 
 function App() {
   return (
@@ -46,6 +47,8 @@ function App() {
           <Route element={<AdminLayout />}>
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/createUser" element={<AddUserPage />} />
+            <Route path="/admin/createBook" element={<AddBookPage />} />
+
           </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

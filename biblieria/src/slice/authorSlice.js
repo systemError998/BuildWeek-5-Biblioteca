@@ -13,7 +13,7 @@ const initialState={
 //primo parametro nome azione/ oprerazione che vuoi eseguire fetch, parametro 2 operazione async
 
 export const getAuthors =
-    createAsyncThunk("Authors/fetch", async(args = {})=>{
+    createAsyncThunk("authors/fetch", async(args = {})=>{
         let { page, author } = args;
        return axios.get("/api/author?"+ (page ? ("&page=" + page) : "") + (author ? ("&author=" + author) : "")).then(response=> {console.log(response); return response.data}).catch(error=>console.log(error));
     })
