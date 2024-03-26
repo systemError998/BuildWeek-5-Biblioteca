@@ -51,7 +51,7 @@ class BookController extends Controller
      */
     public function store(StoreBookRequest $request)
     {
-        $this->authorize('create', [Book::class]);
+        /* $this->authorize('create', [Book::class]); */
         $newBook = $request->only(['title', 'year', 'abstract', "author_id", "category_id"]);
         if ($request->has("cover_url")) {
             $newBook["cover_url"] = $request->cover_url;
