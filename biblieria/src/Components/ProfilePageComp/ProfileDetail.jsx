@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../assets/css/babyStyle.css'
 import { Link } from 'react-router-dom'
+import useAuthContext from "../../context/AuthContext";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 export default function ProfileDetail() {
+    const { user } = useAuthContext();
+
+    useEffect(()=>{
+        console.log(user)
+    },[user])
   return (
 
     <>
-        <div className="container px-0 bg-white mt-3 rounded-md">
+        { user ? <><div className="container px-0 bg-white mt-3 rounded-md">
             <div className=" flex flex-initial ml-44 darkBlue border border-white rounded-r-md relative">
 
                 <Link to="/profile/edit" className=''>
@@ -17,11 +25,11 @@ export default function ProfileDetail() {
                 </Link>
 
                 <div className="flex justify-center gap-10 box-border py-5 w-1/2">
-                    <img src="https://i.pinimg.com/564x/ce/b2/71/ceb2711285d45d4d5cf73cbf1da0d1d9.jpg" alt="" className="w-64 rounded-full" />
+                    <img src={user.profile_img} alt="" className="w-64 rounded-full" />
                     <div>
                         <div className='w-96 h-100 p-5 rounded-lg'>
-                            <p className="font-bold font-serif text-4xl pb-2 inline-block text-white"> BARBIE BARBONA </p>
-                            <p className='font-sans text-white'> BARBIEBARBONA@KEN.COM </p>
+                            <p className="font-bold font-serif text-4xl pb-2 inline-block text-white"> {user.name} </p>
+                            <p className='font-sans text-white'> {user.email}</p>
                         </div>
                     </div>
                 </div>
@@ -43,7 +51,7 @@ export default function ProfileDetail() {
                     librone
                 </div>
             </div>
-        </div>
+        </div></> : <Spinner animation="grow" variant="danger" /> }
 
         </>
   )

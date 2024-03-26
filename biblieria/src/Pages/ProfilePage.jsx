@@ -1,18 +1,30 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Col, Row } from 'react-bootstrap'
 import ActiveBookings from '../Components/ActiveBookings'
 import ProfileDetail from '../Components/ProfilePageComp/ProfileDetail'
 import ExpiredBookings from '../Components/ProfilePageComp/ExpiredBookings'
 import Footer from '../Components/Footer'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBookings } from '../slice/bookingSlice'
 
 export default function ProfilePage() {
+
+  const listaBooking = useSelector(state=> state.bookings.listaBooking)
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{
+    dispatch(getBookings())
+  },[])
+
+  console.log(listaBooking)
   return (
     <>
       <div className='mx-3'>
         {/* {posts.length > 0 ?  */} 
         <Row>
           <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
-          <ActiveBookings />
+          <ActiveBookings lista={listaBooking} />
           </Col>
           <Col md={{ span: 7 }} lg={{ span: 8 }}>
             {/* Componenti Main*/}
