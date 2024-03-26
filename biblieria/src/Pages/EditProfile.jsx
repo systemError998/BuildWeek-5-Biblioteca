@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import useAuthContext from "../context/AuthContext";
 import axios from "../api/axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function EditProfile() {
   const { user, setUser, errors } = useAuthContext();
@@ -23,7 +23,7 @@ export default function EditProfile() {
         email,
         profile_img,
       })
-      .then(() => navigate("/"));
+      .then(() => navigate("/profile"));
   };
 
   const deleteProfile = (e) => {
@@ -41,6 +41,7 @@ export default function EditProfile() {
       className="container w-50 position-absolute top-50 start-50 translate-middle bg-dark text-white p-5 rounded"
       data-bs-theme="dark"
     >
+    <Link className="text-decoration-none btn btn-light" to={'/profile'}>back</Link>
       <div className="row">
         <h2 className="text-center mb-5">Modify Account</h2>
         <form
