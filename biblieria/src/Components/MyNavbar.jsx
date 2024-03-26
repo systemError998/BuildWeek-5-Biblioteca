@@ -18,6 +18,8 @@ import {
   Input,
   Checkbox,
 } from "@material-tailwind/react";
+import { Image } from "react-bootstrap";
+import Logo from '../assets/img/logo.png'
 
 //VOCI NAVBAR
 const navigation = [
@@ -63,28 +65,27 @@ export default function Example() {
               </div>
               <div className="flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <a href="localhost:3000">
-                    <img
-                      href="localhost:3000"
+                  <Link to={"/"}>
+                    <Image
+                      
                       className="h-10 w-auto"
-                      src="logo.png"
-                      alt="Your Company"
+                      src={Logo}
+                      alt="Librioteca"
                     />
-                  </a>
+                  </Link>
                 </div>
                 {/* admin button */}
-                {user?.is_admin && (pathname !== '/admin') && (
+               {user?.is_admin && (pathname !== '/admin') ?
+               
                   <Link className="nav-link text-white py-3 px-3 ms-4 rounded-lg border border-white"
                     to={"/admin"}>
                     Admin
-                  </Link>
-                )}
-                {user?.is_admin && (pathname === '/admin') && (
+                  </Link> : ''}
+                {user?.is_admin && (pathname === '/admin') ? 
                   <Link className="nav-link text-white py-3 px-3 ms-4 rounded-lg border border-white"
                     to={"/"}>
                     Home
-                  </Link>
-                )}
+                  </Link> : ''}  
                 {/* end admin button */}
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
