@@ -14,12 +14,7 @@ class AuthorController extends Controller
      */
     public function index(Request $request)
     {
-        /*    ['page' => $page, "author"=>$author] = $request;
-           $page=$page ? $page : 1;
-           return Author::with("books")->with("categories")
-                           ->where('full_name', 'like', "%$author%")
-                           ->orderBy("full_name","asc")
-                           ->paginate(20, ['*'], 'page', $page); */
+       
 
         ['page' => $page, "author" => $author] = $request;
         $page = $page ? $page : 1;

@@ -26,15 +26,24 @@ Route::get('/', function () {
     return ['Laravel' => app()->version()];
 });
 
-Route::resource("/api/book",BookController::class)->middleware(['auth', 'verified']);
-Route::resource("/admin/user",UserController::class)->middleware(['auth', 'verified']);
-Route::resource("/api/favorites",FavoritesController::class);
+
+
 require __DIR__.'/auth.php';
 
 Route::get('/dashboard', function(){
     return Auth::user();
 })->middleware(['auth', 'verified']);
 
-Route::resource("/api/booking",BookingController::class)->middleware(['auth', 'verified']);
+
 Route::resource("/api/category",CategoryController::class);
 Route::resource("/api/author",AuthorController::class);
+Route::resource("/api/book",BookController::class);
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource("/admin/user",UserController::class);
+    Route::resource("/api/favorites",FavoritesController::class);
+    Route::resource("/api/booking",BookingController::class);
+    Route::resource("/api/category", CategoryController::class)->except(['index', 'show']);
+    Route::resource("/api/author", AuthorController::class)->except(['index', 'show']);
+    Route::resource("/api/book", BookController::class)->except(['index', 'show']);
+});
