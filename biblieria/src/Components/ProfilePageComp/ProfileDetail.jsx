@@ -3,14 +3,24 @@ import '../../assets/css/babyStyle.css'
 import { Link } from 'react-router-dom'
 import useAuthContext from "../../context/AuthContext";
 import Spinner from 'react-bootstrap/Spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPreferiti } from '../../slice/preferitiSlice';
 
 
 export default function ProfileDetail() {
+    const preferiti= useSelector(state=>state.preferiti.listaPreferiti)
+    const dispatch = useDispatch()
     const { user } = useAuthContext();
 
     useEffect(()=>{
         console.log(user)
     },[user])
+
+    useEffect(()=>{
+        dispatch(getPreferiti())
+    },[])
+
+    console.log(preferiti)
   return (
 
     <>
@@ -36,19 +46,24 @@ export default function ProfileDetail() {
             </div>
         </div>
         <div className="container bg-white mt-3 rounded-md">
-            <div className="row gap-3 mt-4 pt-3">
+            <div className="row gap-3 mt-4 pt-3 mb-4">
                 <h3 className='darkText font-sans font-bold text-lg uppercase'>I tuoi preferiti</h3>
-                <div className="col border-1 border-light rounded-1" style={{height: "10em"}}>
-                    librone
-                </div>
-                <div className="col border-1 border-light rounded-1" style={{height: "10em"}}>
-                    librone
-                </div>
-                <div className="col border-1 border-light rounded-1" style={{height: "10em"}}>
-                    librone
-                </div>
-                <div className="col border-1 border-light rounded-1" style={{height: "10em"}}>
-                    librone
+                <div className='d-flex flex-wrap' >
+                {preferiti && preferiti.map((e,index)=>
+                    <div >
+                            <div key={index} className='my-2 pb-2 cursor-pointer hover:text-blue-800 '>
+                                <div className=' w-36'>
+                                    <img className=' h-36 ' src={e.book.cover_url} alt="" />
+                                </div>
+                                <div className='p-0 pt-1'>
+                                    <p className='text-xs'>{e.book.title}</p>
+                                    <p className='text-sm'>{e.book.author.full_name}</p>
+                                    <button  className='text-sm darkBlue py-2 px-4 text-white hover:text-blue-800 mt-4'> ELIMINA </button>
+                                </div>
+                            </div>
+                    </div>
+                )}
+                
                 </div>
             </div>
         </div></> : <Spinner animation="grow" variant="danger" /> }

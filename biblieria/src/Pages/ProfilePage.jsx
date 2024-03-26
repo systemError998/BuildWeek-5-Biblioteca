@@ -13,18 +13,13 @@ export default function ProfilePage() {
 
   const dispatch = useDispatch()
 
-  useEffect(()=>{
-    dispatch(getBookings())
-  },[])
-
-  console.log(listaBooking)
   return (
     <>
       <div className='mx-3'>
         {/* {posts.length > 0 ?  */} 
         <Row>
           <Col className="d-none d-md-block" md={{ span: 5 }} lg={2}>
-          <ActiveBookings lista={listaBooking} />
+          <ActiveBookings />
           </Col>
           <Col md={{ span: 7 }} lg={{ span: 8 }}>
             {/* Componenti Main*/}

@@ -15,7 +15,7 @@ const initialState={
 export const getAuthors =
     createAsyncThunk("authors/fetch", async(args = {})=>{
         let { page, author } = args;
-       return axios.get("/api/author?"+ (page ? ("&page=" + page) : "") + (author ? ("&author=" + author) : "")).then(response=> {console.log(response); return response.data}).catch(error=>console.log(error));
+       return axios.get("/api/author?"+ (page ? ("&page=" + page) : "") + (author ? ("&author=" + author) : "")).then(response=> {/* console.log(response); */ return response.data}).catch(error=>console.log(error));
     })
 
 
