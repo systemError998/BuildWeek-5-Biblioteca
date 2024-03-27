@@ -14,6 +14,7 @@ export default function BookDetailComponent() {
     const { user } = useAuthContext();
 
     const mybooking = useSelector(state => state.bookings.listaBooking)
+    const myFavorites = useSelector(state => state.preferiti.listaPreferiti)
 
     let { id } = useParams()
 
@@ -52,6 +53,12 @@ export default function BookDetailComponent() {
             .catch(error => console.log(error))
     }
 
+    function removePreferito() {
+        axios.delete('/api/favorites/' + id )
+            .then(response => { console.log(response.data); dispatch(getPreferiti())})
+            .catch(error => console.log(error))
+    }
+   
 
     return (
         book.author ? <>
@@ -76,11 +83,18 @@ export default function BookDetailComponent() {
                     </div>
                     <div className="col relative">
 
-                        <button onClick={() => handlePreferito()} className='absolute top-0 right-3'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 hover:fill-red-500">
+                       { (myFavorites.find((b) => b.book_id == id)) ?
+                       <button onClick={() => removePreferito()} className='absolute top-0 right-3'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 hover:fill-red-500">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                             </svg>
                         </button>
+                       :
+                       <button onClick={() => handlePreferito()} className='absolute top-0 right-3'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 hover:fill-red-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                            </svg>
+                        </button> }
 
                         <h1 className='uppercase fs-2'>{book.title}</h1>
                         <h3 className='text-secondary'>

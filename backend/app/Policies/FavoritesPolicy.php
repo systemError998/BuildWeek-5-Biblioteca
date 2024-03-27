@@ -29,7 +29,11 @@ class FavoritesPolicy
      */
     public function create(User $user): bool
     {
-        //
+        if($user) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

@@ -68,9 +68,9 @@ class FavoritesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Favorites $favorites)
+    public function destroy(Favorites $favorite)
     {
-        $delteFav = $favorites->delete();
+        $delteFav = $favorite->delete();
         return $delteFav ? "fav eliminato" : "fav non trovato";
     }
 }

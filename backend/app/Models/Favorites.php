@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Favorites extends Model
 {
     use HasFactory;
-
+    protected $fillable=['user_id','book_id'];
     public function book () : BelongsTo  {
         return $this->belongsTo(Book::class);
     }
@@ -18,5 +18,5 @@ class Favorites extends Model
     public function user () : BelongsTo  {
         return $this->belongsTo(User::class);
     }
-    
+
 }
